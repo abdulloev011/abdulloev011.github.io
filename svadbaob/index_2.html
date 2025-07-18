@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Свадебное приглашение</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Georgia', serif;
+      background: linear-gradient(to bottom, #fffafc, #fce4ec);
+      overflow: hidden;
+      color: #333;
+      text-align: center;
+    }
+
+    .container {
+      position: relative;
+      padding: 40px 20px;
+      z-index: 2;
+    }
+
+    h1 {
+      font-size: 2.8em;
+      margin-bottom: 0.4em;
+      animation: fadeIn 2s ease-in-out;
+      color: #b23c83;
+    }
+
+    h2 {
+      font-size: 2em;
+      color: #6d1b7b;
+      margin-bottom: 1em;
+      animation: fadeIn 2.5s ease-in-out;
+    }
+
+    p {
+      font-size: 1.2em;
+      margin: 0.6em 0;
+      color: #4a4a4a;
+      animation: fadeIn 3s ease-in-out;
+    }
+
+    .falling-icon {
+      position: absolute;
+      width: 40px;
+      height: 40px;
+      background-size: contain;
+      background-repeat: no-repeat;
+      animation: fall linear infinite;
+      opacity: 0.4;
+    }
+
+    .ring1 {
+      background-image: url('image/serdechko.png');
+      left: 10%;
+      animation-duration: 8s;
+    }
+
+    .ring2 {
+      background-image: url('image/serdechko.png');
+      left: 50%;
+      animation-duration: 10s;
+    }
+
+    .heart1 {
+      background-image: url('image/kolco.png');
+      left: 30%;
+      animation-duration: 12s;
+    }
+
+    .heart2 {
+      background-image: url('image/kolco.png');
+      left: 70%;
+      animation-duration: 11s;
+    }
+
+    @keyframes fall {
+      0% { top: -60px; transform: rotate(0deg); }
+      100% { top: 110%; transform: rotate(360deg); }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+  <div class="falling-icon ring1"></div>
+  <div class="falling-icon ring2"></div>
+  <div class="falling-icon heart1"></div>
+  <div class="falling-icon heart2"></div>
+
+  <div class="container">
+    <h1>Дорогие наши родные и друзья!</h1>
+    <p>Наступает день, о котором мы мечтали — день, когда соединяются два сердца.</p>
+    <h2>Мы — Олим и Бону — хотим разделить это счастливое событие с теми, кто нам по-настоящему дорог.</h2>
+    <p>Приглашаем вас на нашу свадьбу, чтобы вместе прожить незабываемый вечер любви, радости и танцев!</p>
+    <p>📅 31 июля 2025 года</p>
+    <p>🕖 Время: 19:00</p>
+    <p>📍 Место: Ресторан "Шохсарой"</p>
+    <p>Очень ждём вас и надеемся, что этот день станет по-настоящему особенным и для вас.</p>
+  </div>
+
+  <audio autoplay loop>
+    <source src="https://files.catbox.moe/kxw0dj.mp3" type="audio/mpeg">
+    Ваш браузер не поддерживает воспроизведение музыки.
+  </audio>
+</body>
+</html>
