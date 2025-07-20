@@ -1,111 +1,106 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Свадебное приглашение</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Приглашение на свадьбу</title>
   <style>
     body {
-      margin: 0;
-      padding: 0;
-      font-family: 'Georgia', serif;
-      background: linear-gradient(to bottom, #fffafc, #fce4ec);
-      overflow: hidden;
-      color: #333;
-      text-align: center;
+      margin: 20;
+      font-family: 'Segoe UI', sans-serif;
+      background: url('image/rm171-sasi-20.jpg') no-repeat center center fixed;
+      background-size: cover;
+      color: #444;
     }
-
     .container {
-      position: relative;
-      padding: 40px 20px;
-      z-index: 2;
+      text-align: center;
+      padding: 20px 20px;
+      background-color: rgba(255,255,255,0.8);
+      max-width: 700px;
+      margin: 40px auto;
+      border-radius: 20px;
+      box-shadow: 0 8px 16px rgba(0,0,0,0.2);
     }
-
+    h1, h2, p {
+      margin: 10px 0;
+    }
     h1 {
-      font-size: 2.8em;
-      margin-bottom: 0.4em;
-      animation: fadeIn 2s ease-in-out;
-      color: #b23c83;
+      font-size: 32px;
     }
-
     h2 {
-      font-size: 2em;
-      color: #6d1b7b;
-      margin-bottom: 1em;
-      animation: fadeIn 2.5s ease-in-out;
+      font-size: 26px;
     }
-
-    p {
-      font-size: 1.2em;
-      margin: 0.6em 0;
-      color: #4a4a4a;
-      animation: fadeIn 3s ease-in-out;
+    .button {
+      margin-top: 30px;
+      padding: 12px 30px;
+      font-size: 16px;
+      color: white;
+      background-color: #7e7e7e;
+      border: none;
+      border-radius: 30px;
+      cursor: pointer;
+      transition: background-color 0.3s;
     }
-
-    .falling-icon {
-      position: absolute;
-      width: 40px;
-      height: 40px;
-      background-size: contain;
-      background-repeat: no-repeat;
-      animation: fall linear infinite;
-      opacity: 0.4;
+    .button:hover {
+      background-color: #5a5a5a;
     }
-
-    .ring1 {
-      background-image: url('image/serdechko.png');
-      left: 10%;
-      animation-duration: 8s;
-    }
-
-    .ring2 {
-      background-image: url('image/serdechko.png');
-      left: 50%;
-      animation-duration: 10s;
-    }
-
-    .heart1 {
-      background-image: url('image/kolco.png');
-      left: 30%;
-      animation-duration: 12s;
-    }
-
-    .heart2 {
-      background-image: url('image/kolco.png');
-      left: 70%;
-      animation-duration: 11s;
-    }
-
-    @keyframes fall {
-      0% { top: -60px; transform: rotate(0deg); }
-      100% { top: 110%; transform: rotate(360deg); }
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(-20px); }
-      to { opacity: 1; transform: translateY(0); }
+    .falling {
+      position: fixed;
+      z-index: 0;
+      pointer-events: none;
     }
   </style>
 </head>
-  <div class="falling-icon ring1"></div>
-  <div class="falling-icon ring2"></div>
-  <div class="falling-icon heart1"></div>
-  <div class="falling-icon heart2"></div>
-
-  <div class="container">
-    <h1>Дорогие наши родные и друзья!</h1>
-    <p>Наступает день, о котором мы мечтали — день, когда соединяются два сердца.</p>
-    <h2>Мы — Олим и Бону — хотим разделить это счастливое событие с теми, кто нам по-настоящему дорог.</h2>
-    <p>Приглашаем вас на нашу свадьбу, чтобы вместе прожить незабываемый вечер любви, радости и танцев!</p>
-    <p>📅 31 июля 2025 года</p>
-    <p>🕖 Время: 19:00</p>
-    <p>📍 Место: Ресторан "Шохсарой"</p>
-    <p>Очень ждём вас и надеемся, что этот день станет по-настоящему особенным и для вас.</p>
-  </div>
-
-  <audio autoplay loop>
-    <source src="https://files.catbox.moe/kxw0dj.mp3" type="audio/mpeg">
-    Ваш браузер не поддерживает воспроизведение музыки.
+<body>
+  <audio controls autoplay>
+    <source src="audio/EdSheeran-Perfect.mp3" type="audio/mpeg">
+    Your browser does not support the audio tag.
   </audio>
+  <div class="container">
+    <h1 style="padding-top: 1%;">Дорогие гости!</h1>
+    <p>С огромной радостью приглашаем Вас на нашу свадьбу,</p>
+    <h2>Олимчон & Бону</h2>
+    <p>которая состоится</p>
+    <p><strong>31 июля 2025 года</strong><br>в 19:00</p>
+    <p>в ресторане <strong>Шохсарой</strong></p>
+    <p>В этот вечер будет всё, о чём мечтается:
+душевная атмосфера, свет свечей, улыбки близких людей,
+живые эмоции, танцы до утра и, конечно же,
+много любви — настоящей, искренней, нашей. 💫
+
+Мы очень хотим, чтобы ты стал(а) частью этого дня —
+дня, который запомнится на всю жизнь.
+Без тебя этот праздник будет неполным.
+
+Нарядься красиво, захвати с собой хорошее настроение
+и приходи с открытым сердцем —
+мы будем ждать именно тебя.
+
+С любовью и нетерпением,
+Олимчон и Бону 💍</p>
+    <button class="button" onclick="alert('Спасибо за подтверждение!')">Подтвердить участие</button>
+  </div>
+  
+
+  <script>
+    // Анимация падающих объектов (кольца и голуби)
+    const items = ['💍', '❤️'];
+    for (let i = 0; i < 30; i++) {
+      let el = document.createElement('div');
+      el.className = 'falling';
+      el.innerText = items[Math.floor(Math.random() * items.length)];
+      el.style.left = Math.random() * 100 + 'vw';
+      el.style.top = '-10vh';
+      el.style.fontSize = Math.random() * 24 + 16 + 'px';
+      el.style.animation = `fall ${Math.random() * 5 + 5}s linear infinite`;
+      document.body.appendChild(el);
+    }
+  </script>
+  <style>
+    @keyframes fall {
+      0% {transform: translateY(0); opacity: 1;}
+      100% {transform: translateY(100vh); opacity: 0;}
+    }
+  </style>
 </body>
 </html>
