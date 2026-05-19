@@ -1,0 +1,733 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>Luxury Wedding Invitation | Éternité</title>
+    
+    <!-- Google Fonts + Font Awesome -->
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:wght@400;500;600;700;800;900&family=Cormorant+Garamond:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
+    <!-- GSAP & AOS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" />
+    
+    <!-- Particles.js -->
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            user-select: none; /* luxury feel, avoid accidental selection */
+        }
+
+        body {
+            background: #0a0708;
+            font-family: 'Playfair Display', serif;
+            overflow-x: hidden;
+            color: #f5efeb;
+            scroll-behavior: smooth;
+        }
+
+        /* Loading Screen */
+        #loader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at center, #1a1113 0%, #050202 100%);
+            z-index: 10000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            transition: opacity 1.8s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+            backdrop-filter: blur(2px);
+        }
+
+        .loader-content {
+            text-align: center;
+            opacity: 0;
+            transform: scale(0.96);
+            animation: loaderGlow 1.8s ease-out forwards;
+        }
+
+        @keyframes loaderGlow {
+            0% { opacity: 0; transform: scale(0.9); filter: blur(10px);}
+            100% { opacity: 1; transform: scale(1); filter: blur(0);}
+        }
+
+        .initials-logo {
+            font-family: 'Great Vibes', cursive;
+            font-size: 4rem;
+            background: linear-gradient(135deg, #e9c891, #d4af37, #b8860b);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 0 0 20px rgba(212, 175, 55, 0.5);
+            letter-spacing: 4px;
+        }
+
+        .loader-sub {
+            font-family: 'Cormorant Garamond', serif;
+            letter-spacing: 6px;
+            margin-top: 20px;
+            font-size: 12px;
+            color: #d4af37;
+            font-weight: 300;
+        }
+
+        /* Main Content */
+        .main-content {
+            opacity: 0;
+            transition: opacity 1.2s ease-in-out;
+            background: radial-gradient(circle at 30% 10%, #1e1216, #030101);
+            min-height: 100vh;
+        }
+
+        /* luxury container */
+        .container {
+            max-width: 480px;
+            margin: 0 auto;
+            padding: 20px 20px 60px;
+            position: relative;
+        }
+
+        /* ENVELOPE SECTION */
+        .envelope-stage {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            backdrop-filter: blur(3px);
+        }
+
+        .luxury-envelope {
+            width: 280px;
+            height: 180px;
+            background: linear-gradient(145deg, #2f1e24, #170e12);
+            border-radius: 18px;
+            position: relative;
+            box-shadow: 0 25px 50px -12px rgba(0,0,0,0.8), 0 0 0 1px rgba(212,175,55,0.2), 0 0 30px rgba(212,175,55,0.3);
+            cursor: pointer;
+            transition: all 0.3s;
+            transform-style: preserve-3d;
+        }
+
+        .envelope-flap {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #3e2a2c, #24181c);
+            clip-path: polygon(0 0, 50% 45%, 100% 0);
+            transition: all 1.2s cubic-bezier(0.23, 1, 0.32, 1);
+            transform-origin: top;
+            z-index: 2;
+            border-radius: 18px 18px 0 0;
+            box-shadow: inset 0 5px 12px rgba(0,0,0,0.3);
+        }
+
+        .envelope-open .envelope-flap {
+            transform: rotateX(180deg);
+            opacity: 0.5;
+        }
+
+        .envelope-body {
+            padding: 20px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            height: 100%;
+            color: #dbb879;
+            font-family: 'Great Vibes', cursive;
+            font-size: 20px;
+            letter-spacing: 2px;
+        }
+
+        .envelope-body i {
+            font-size: 32px;
+            margin-bottom: 8px;
+            color: #d4af37;
+            text-shadow: 0 0 8px gold;
+        }
+
+        .click-hint {
+            margin-top: 30px;
+            font-family: 'Cormorant Garamond', serif;
+            background: rgba(0,0,0,0.5);
+            backdrop-filter: blur(8px);
+            padding: 12px 24px;
+            border-radius: 60px;
+            font-size: 14px;
+            letter-spacing: 3px;
+            border: 1px solid rgba(212,175,55,0.5);
+            color: #e9ce9b;
+            transition: 0.3s;
+        }
+
+        /* INVITATION CARD (hidden initially) */
+        .invitation-card {
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(40px);
+            transition: all 1.2s ease-out;
+            margin-top: 30px;
+        }
+
+        .invitation-card.show {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        /* Glassmorphism cards */
+        .glass-card {
+            background: rgba(20, 12, 14, 0.45);
+            backdrop-filter: blur(15px);
+            border-radius: 40px;
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            box-shadow: 0 20px 40px -12px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.05);
+            padding: 28px 20px;
+            margin-bottom: 35px;
+            transition: all 0.4s;
+        }
+
+        .hero-section {
+            text-align: center;
+            margin: 20px 0 10px;
+        }
+
+        .names {
+            font-family: 'Great Vibes', cursive;
+            font-size: 3.2rem;
+            background: linear-gradient(135deg, #f3e5c0, #d4af37);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            letter-spacing: 2px;
+        }
+
+        .wedding-sub {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1rem;
+            letter-spacing: 6px;
+            margin-top: 8px;
+            color: #ddc796;
+        }
+
+        .date-lg {
+            font-size: 1.3rem;
+            font-weight: 500;
+            margin-top: 20px;
+            border-top: 1px solid rgba(212,175,55,0.5);
+            display: inline-block;
+            padding-top: 15px;
+        }
+
+        .invitation-text p {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.1rem;
+            line-height: 1.6;
+            font-weight: 400;
+            margin: 18px 0;
+            text-align: center;
+        }
+
+        /* Countdown timer */
+        .countdown-wrapper {
+            display: flex;
+            justify-content: space-around;
+            text-align: center;
+            gap: 12px;
+            margin-top: 20px;
+        }
+        .time-block {
+            background: rgba(0,0,0,0.5);
+            backdrop-filter: blur(4px);
+            border-radius: 24px;
+            padding: 12px 0;
+            width: 70px;
+            border: 1px solid rgba(212,175,55,0.5);
+        }
+        .time-number {
+            font-size: 2rem;
+            font-weight: 700;
+            font-family: 'Playfair Display', serif;
+            color: #e9c891;
+        }
+        .time-label {
+            font-size: 0.7rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        /* Buttons & location */
+        .location-card {
+            text-align: center;
+        }
+        .map-btn, .insta-btn {
+            background: transparent;
+            border: 1px solid #d4af37;
+            padding: 12px 20px;
+            border-radius: 50px;
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 600;
+            color: #e9ce9b;
+            margin: 8px 6px;
+            transition: 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            backdrop-filter: blur(4px);
+        }
+        .map-btn i, .insta-btn i {
+            color: #d4af37;
+        }
+        .map-btn:hover, .insta-btn:hover {
+            background: rgba(212,175,55,0.2);
+            transform: scale(1.02);
+            border-color: #ffd966;
+        }
+
+        /* Music button */
+        .music-toggle {
+            position: fixed;
+            bottom: 25px;
+            right: 20px;
+            z-index: 999;
+            background: rgba(0,0,0,0.6);
+            backdrop-filter: blur(12px);
+            width: 54px;
+            height: 54px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid rgba(212,175,55,0.8);
+            cursor: pointer;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.4);
+            transition: all 0.2s;
+        }
+        .music-toggle i {
+            font-size: 24px;
+            color: #e9c891;
+        }
+
+        /* Gallery */
+        .gallery-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        .gallery-item {
+            width: 100%;
+            height: 200px;
+            background-size: cover;
+            background-position: center;
+            border-radius: 28px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+            transition: 0.5s;
+            border: 1px solid rgba(212,175,55,0.3);
+        }
+        .gallery-item:hover {
+            transform: scale(1.01);
+            border-color: gold;
+        }
+
+        /* floating particles */
+        #particles-js {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .footer {
+            text-align: center;
+            font-family: 'Cormorant Garamond';
+            margin-top: 50px;
+            padding: 25px;
+            font-size: 0.8rem;
+            border-top: 0.5px solid rgba(212,175,55,0.3);
+        }
+
+        /* Responsive */
+        @media (max-width: 500px) {
+            .container { padding: 16px; }
+            .names { font-size: 2.6rem; }
+            .time-block { width: 60px; }
+            .time-number { font-size: 1.6rem; }
+        }
+
+        button, a { cursor: pointer; }
+
+        /* Glowing animations */
+        @keyframes softPulse {
+            0% { box-shadow: 0 0 5px rgba(212,175,55,0.3);}
+            100% { box-shadow: 0 0 25px rgba(212,175,55,0.6);}
+        }
+
+        .luxury-envelope {
+            animation: softPulse 2s infinite alternate;
+        }
+
+        .scroll-down {
+            margin-top: 40px;
+            font-size: 12px;
+            opacity: 0.7;
+        }
+    </style>
+</head>
+<body>
+
+<div id="loader">
+    <div class="loader-content">
+        <div class="initials-logo">A & S</div>
+        <div class="loader-sub">ÉTERNITÉ · WEDDING</div>
+        <div style="margin-top: 30px; width: 40px; height: 2px; background: linear-gradient(90deg, transparent, #d4af37, transparent); margin-left: auto; margin-right: auto;"></div>
+    </div>
+</div>
+
+<div id="particles-js"></div>
+
+<main class="main-content">
+    <div class="container">
+        <!-- ENVELOPE SCREEN (initially visible) -->
+        <div id="envelopeScreen" class="envelope-stage">
+            <div id="envelopeObj" class="luxury-envelope">
+                <div class="envelope-flap"></div>
+                <div class="envelope-body">
+                    <i class="fas fa-envelope-open-text"></i>
+                    <div style="font-size: 14px; margin-top: 8px;">Wedding Invitation</div>
+                </div>
+            </div>
+            <div class="click-hint">
+                <i class="fas fa-hand-pointer"></i> НАЖМИТЕ, ЧТОБЫ ОТКРЫТЬ
+            </div>
+            <div class="scroll-down"><i class="fas fa-chevron-down"></i></div>
+        </div>
+
+        <!-- INVITATION DETAILS (hidden until envelope opens) -->
+        <div id="invitationDetails" class="invitation-card">
+            <!-- Hero Section -->
+            <div class="glass-card hero-section" data-aos="fade-up" data-aos-duration="1000">
+                <div class="names">Alexandre & Sophia</div>
+                <div class="wedding-sub">W E D D I N G · I N V I T A T I O N</div>
+                <div class="date-lg"><i class="fas fa-calendar-alt" style="color:#d4af37;"></i> 15 · SEPTEMBER · 2026</div>
+            </div>
+
+            <!-- Invitation text -->
+            <div class="glass-card invitation-text" data-aos="fade-up" data-aos-duration="1100">
+                <p>С огромной радостью в наших сердцах<br>
+                мы приглашаем вас разделить с нами<br>
+                самый волшебный день – день нашей любви.</p>
+                <p style="font-family: 'Great Vibes'; font-size: 1.5rem;">“Amor Vincit Omnia”</p>
+                <p>Ваше присутствие станет главным подарком<br>в этой истории вечной элегантности.</p>
+            </div>
+
+            <!-- Date & Time + Countdown -->
+            <div class="glass-card" data-aos="fade-up" data-aos-duration="1200">
+                <div style="text-align: center; font-size: 1.6rem; font-family: 'Great Vibes'; margin-bottom: 12px;">Сaviar & Roses</div>
+                <div style="display: flex; justify-content: center; gap: 15px; margin: 10px 0;">
+                    <span><i class="far fa-clock"></i> 17:30 · Ceremony</span>
+                    <span><i class="fas fa-champagne-glasses"></i> 20:00 · Gala</span>
+                </div>
+                <div style="text-align: center; font-weight: 300;">До нашей сказки осталось:</div>
+                <div class="countdown-wrapper" id="countdownTimer">
+                    <div class="time-block"><div class="time-number" id="days">00</div><div class="time-label">Дни</div></div>
+                    <div class="time-block"><div class="time-number" id="hours">00</div><div class="time-label">Часы</div></div>
+                    <div class="time-block"><div class="time-number" id="minutes">00</div><div class="time-label">Минуты</div></div>
+                    <div class="time-block"><div class="time-number" id="seconds">00</div><div class="time-label">Секунды</div></div>
+                </div>
+            </div>
+
+            <!-- Location & Instagram -->
+            <div class="glass-card location-card" data-aos="fade-up" data-aos-duration="1300">
+                <i class="fas fa-map-marker-alt" style="font-size: 28px; color:#d4af37;"></i>
+                <h3 style="margin: 12px 0; font-weight: 500;">Château de La Lumiére</h3>
+                <p>French Riviera, Avenue des Roses, 06230 St-Jean-Cap-Ferrat</p>
+                <div style="margin-top: 20px;">
+                    <button id="mapBtn" class="map-btn"><i class="fab fa-google"></i> ОТКРЫТЬ КАРТУ</button>
+                    <button id="instaBtn" class="insta-btn"><i class="fab fa-instagram"></i> INSTAGRAM</button>
+                </div>
+            </div>
+
+            <!-- Gallery Section -->
+            <div class="glass-card" data-aos="fade-up" data-aos-duration="1400" style="padding: 20px;">
+                <h3 style="font-family: 'Great Vibes'; text-align:center; font-size: 2rem;">Romantic Moments</h3>
+                <div class="gallery-grid" style="margin-top: 15px;">
+                    <div class="gallery-item" style="background-image: url('https://images.pexels.com/photos/2253870/pexels-photo-2253870.jpeg?auto=compress&cs=tinysrgb&w=600');"></div>
+                    <div class="gallery-item" style="background-image: url('https://images.pexels.com/photos/2387873/pexels-photo-2387873.jpeg?auto=compress&cs=tinysrgb&w=600');"></div>
+                    <div class="gallery-item" style="background-image: url('https://images.pexels.com/photos/1284144/pexels-photo-1284144.jpeg?auto=compress&cs=tinysrgb&w=600');"></div>
+                </div>
+            </div>
+
+            <!-- Footer -->
+            <div class="footer" data-aos="fade-up">
+                <i class="fas fa-heart" style="color:#d4af37;"></i> Merci infiniment <i class="fas fa-heart" style="color:#d4af37;"></i><br>
+                Dress code: Black Tie · Golden Accents
+            </div>
+        </div>
+    </div>
+
+    <!-- Music Button -->
+    <div id="musicBtn" class="music-toggle">
+        <i class="fas fa-music"></i>
+    </div>
+</main>
+
+<script>
+    // ----------------------------------------------
+    // Loader Hide
+    window.addEventListener('load', () => {
+        setTimeout(() => {
+            const loader = document.getElementById('loader');
+            loader.style.opacity = '0';
+            setTimeout(() => {
+                loader.style.display = 'none';
+                document.querySelector('.main-content').style.opacity = '1';
+                initParticles();
+            }, 1500);
+        }, 2000);
+    });
+
+    function initParticles() {
+        particlesJS('particles-js', {
+            particles: {
+                number: { value: 60, density: { enable: true, value_area: 800 } },
+                color: { value: "#d4af37" },
+                shape: { type: "circle", stroke: { width: 0, color: "#b8860b" } },
+                opacity: { value: 0.4, random: true, anim: { enable: true, speed: 1, opacity_min: 0.1, sync: false } },
+                size: { value: 3, random: true, anim: { enable: true, speed: 2, size_min: 0.3 } },
+                line_linked: { enable: false },
+                move: { enable: true, speed: 0.8, direction: "none", random: true, straight: false, out_mode: "out" }
+            },
+            interactivity: { detect_on: "canvas", events: { onhover: { enable: true, mode: "bubble" }, onclick: { enable: false } }, modes: { bubble: { distance: 80, size: 5, duration: 2, opacity: 0.6 } } },
+            retina_detect: true
+        });
+    }
+
+    // GSAP + Envelope Logic
+    let envelopeOpened = false;
+    const envelopeDiv = document.getElementById('envelopeObj');
+    const invitationBlock = document.getElementById('invitationDetails');
+    const envelopeScreen = document.getElementById('envelopeScreen');
+
+    function openEnvelope() {
+        if(envelopeOpened) return;
+        envelopeOpened = true;
+        
+        // Add open class for 3D flap
+        envelopeDiv.classList.add('envelope-open');
+        
+        // GSAP cinematic animation
+        gsap.to(envelopeDiv, {
+            scale: 0.92,
+            duration: 0.6,
+            ease: "back.inOut",
+            yoyo: false,
+            repeat: 0,
+            onComplete: () => {
+                gsap.to(envelopeDiv, {
+                    opacity: 0,
+                    scale: 0.7,
+                    duration: 0.9,
+                    ease: "power2.in",
+                    onComplete: () => {
+                        envelopeScreen.style.opacity = '0';
+                        envelopeScreen.style.pointerEvents = 'none';
+                        setTimeout(() => {
+                            envelopeScreen.style.display = 'none';
+                            invitationBlock.classList.add('show');
+                            // trigger AOS refresh
+                            AOS.refresh();
+                            // Animate invitation cards cascade
+                            gsap.fromTo(".invitation-card .glass-card", 
+                                { opacity: 0, y: 40 },
+                                { opacity: 1, y: 0, stagger: 0.15, duration: 0.9, ease: "power3.out", delay: 0.2 }
+                            );
+                        }, 400);
+                    }
+                });
+            }
+        });
+        
+        // Add floating glow effect on background
+        let glowInt = setInterval(() => {}, 100);
+        const bgMain = document.querySelector('.main-content');
+        gsap.to(bgMain, { backgroundColor: "rgba(0,0,0,0.98)", duration: 1.5 });
+        
+        // cinematic spark
+        const sparkleDiv = document.createElement('div');
+        sparkleDiv.style.position = 'fixed';
+        sparkleDiv.style.top = '50%';
+        sparkleDiv.style.left = '50%';
+        sparkleDiv.style.width = '150px';
+        sparkleDiv.style.height = '150px';
+        sparkleDiv.style.background = 'radial-gradient(circle, rgba(212,175,55,0.6), transparent)';
+        sparkleDiv.style.borderRadius = '50%';
+        sparkleDiv.style.transform = 'translate(-50%, -50%) scale(0)';
+        sparkleDiv.style.pointerEvents = 'none';
+        sparkleDiv.style.zIndex = '9999';
+        document.body.appendChild(sparkleDiv);
+        gsap.to(sparkleDiv, { scale: 3, opacity: 0, duration: 1, ease: "power2.out", onComplete: () => sparkleDiv.remove() });
+    }
+
+    envelopeDiv.addEventListener('click', openEnvelope);
+    document.querySelector('.click-hint').addEventListener('click', openEnvelope);
+
+    // Countdown Timer (Set date: September 15, 2026 17:30:00)
+    function updateCountdown() {
+        const weddingDate = new Date(2026, 8, 15, 17, 30, 0).getTime();
+        const now = new Date().getTime();
+        const diff = weddingDate - now;
+        if(diff <= 0) {
+            document.getElementById('days').innerText = '00';
+            document.getElementById('hours').innerText = '00';
+            document.getElementById('minutes').innerText = '00';
+            document.getElementById('seconds').innerText = '00';
+            return;
+        }
+        const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((diff % (86400000)) / (3600000));
+        const minutes = Math.floor((diff % 3600000) / 60000);
+        const seconds = Math.floor((diff % 60000) / 1000);
+        document.getElementById('days').innerText = days < 10 ? '0'+days : days;
+        document.getElementById('hours').innerText = hours < 10 ? '0'+hours : hours;
+        document.getElementById('minutes').innerText = minutes < 10 ? '0'+minutes : minutes;
+        document.getElementById('seconds').innerText = seconds < 10 ? '0'+seconds : seconds;
+    }
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
+
+    // Music (romantic piano piece - premium but autoplay after interaction)
+    let audio = null;
+    let musicPlaying = false;
+    const musicBtn = document.getElementById('musicBtn');
+    let userInteracted = false;
+
+    function initAudio() {
+        if(audio) return;
+        audio = new Audio('05 - Ed Sheeran - Perfect.mp3');
+        audio.loop = true;
+        audio.volume = 0.45;
+    }
+
+    function toggleMusic() {
+        initAudio();
+        if(musicPlaying) {
+            audio.pause();
+            musicPlaying = false;
+            musicBtn.innerHTML = '<i class="fas fa-music"></i>';
+            musicBtn.style.opacity = '0.7';
+        } else {
+            audio.play().catch(e => console.log("Playback require interaction"));
+            musicPlaying = true;
+            musicBtn.innerHTML = '<i class="fas fa-volume-up"></i>';
+            musicBtn.style.opacity = '1';
+        }
+    }
+
+    musicBtn.addEventListener('click', toggleMusic);
+    
+    // Auto-start music after first user gesture (open envelope or tap anywhere)
+    function firstInteractionMusic() {
+        if(!userInteracted) {
+            userInteracted = true;
+            initAudio();
+            audio.play().then(() => {
+                musicPlaying = true;
+                musicBtn.innerHTML = '<i class="fas fa-volume-up"></i>';
+            }).catch(()=>{});
+            document.removeEventListener('click', firstInteractionMusic);
+            document.removeEventListener('touchstart', firstInteractionMusic);
+        }
+    }
+    document.addEventListener('click', firstInteractionMusic);
+    document.addEventListener('touchstart', firstInteractionMusic);
+
+    // Map & Instagram buttons
+    document.getElementById('mapBtn').addEventListener('click', () => {
+        window.open('https://maps.google.com/?q=St-Jean-Cap-Ferrat+French+Riviera', '_blank');
+    });
+    document.getElementById('instaBtn').addEventListener('click', () => {
+        window.open('https://www.instagram.com/luxurywedding', '_blank');
+    });
+
+    // Initialize AOS (will refresh after envelope open)
+    AOS.init({
+        once: true,
+        offset: 20,
+        duration: 800,
+        easing: 'ease-out-cubic',
+        mirror: false
+    });
+
+    // Enhance Parallax + Cinematic smooth scroll (soft touch)
+    window.addEventListener('scroll', () => {
+        let scrolled = window.scrollY;
+        let hero = document.querySelector('.hero-section');
+        if(hero && scrolled < 300) {
+            hero.style.transform = `translateY(${scrolled * 0.2}px)`;
+            hero.style.opacity = 1 - (scrolled * 0.003);
+        }
+    });
+    
+    // For realism, add slight glow to envelope after open effect remain.
+    // also we generate some extra floating sparkle using setInterval optional
+    setInterval(() => {
+        if(!envelopeOpened && document.body) {
+            const spark = document.createElement('div');
+            spark.style.position = 'fixed';
+            spark.style.width = '4px';
+            spark.style.height = '4px';
+            spark.style.background = '#ffd966';
+            spark.style.borderRadius = '50%';
+            spark.style.left = Math.random() * window.innerWidth + 'px';
+            spark.style.top = Math.random() * window.innerHeight + 'px';
+            spark.style.pointerEvents = 'none';
+            spark.style.opacity = '0.8';
+            spark.style.filter = 'blur(1px)';
+            spark.style.zIndex = '999';
+            document.body.appendChild(spark);
+            gsap.to(spark, { opacity: 0, y: -30, duration: 1.2, onComplete: () => spark.remove() });
+        }
+    }, 1800);
+    
+    // Additional premium reflections: add a dynamic gold reflection layer
+    const styleReflect = document.createElement('style');
+    styleReflect.textContent = `
+        .glass-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -75%;
+            width: 50%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(212,175,55,0.1), transparent);
+            transform: skewX(-20deg);
+            pointer-events: none;
+        }
+        .glass-card {
+            overflow: hidden;
+            position: relative;
+        }
+    `;
+    document.head.appendChild(styleReflect);
+</script>
+</body>
+</html>
