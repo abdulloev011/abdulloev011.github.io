@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Свадебное приглашение — Jamshed & Shukrona</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Great+Vibes&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    :root {
+      --cream:#faf3e8;
+      --ivory:#fffaf2;
+      --beige:#e6d2bb;
+      --gold:#b8875a;
+      --text:#4d382b;
+      --muted:#8d7768;
+      --glass:rgba(255,250,242,.72);
+    }
+
+    body {
+      font-family: 'Cormorant Garamond', serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at 20% 10%, rgba(255,255,255,.95), transparent 28%),
+        radial-gradient(circle at 80% 20%, rgba(232,203,188,.45), transparent 26%),
+        linear-gradient(135deg, #fffaf2, #f2e2cf 55%, #ead6bd);
+      overflow-x: hidden;
+    }
+
+    body:before {
+      content:"";
+      position:fixed;
+      inset:0;
+      background-image:
+        linear-gradient(45deg, rgba(120,85,55,.06) 25%, transparent 25%),
+        linear-gradient(-45deg, rgba(120,85,55,.05) 25%, transparent 25%);
+      background-size:28px 28px;
+      opacity:.45;
+      pointer-events:none;
+      z-index:-2;
+    }
+
+    ::-webkit-scrollbar { width: 8px; }
+    ::-webkit-scrollbar-track { background:#f6eadb; }
+    ::-webkit-scrollbar-thumb {
+      background:linear-gradient(#d8bd91, #b8875a);
+      border-radius:50px;
+    }
+
+    .decor {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      overflow: hidden;
+      z-index: -1;
+    }
+
+    .pearl {
+      position:absolute;
+      width:12px;
+      height:12px;
+      border-radius:50%;
+      background:radial-gradient(circle at 30% 30%, white, #f2dfca 60%, #b8875a);
+      animation: float 10s ease-in-out infinite alternate;
+      opacity:.75;
+    }
+
+    .pearl:nth-child(1){top:12%;left:8%}
+    .pearl:nth-child(2){top:28%;right:12%;animation-delay:1.4s}
+    .pearl:nth-child(3){top:64%;left:10%;animation-delay:2.5s}
+    .pearl:nth-child(4){bottom:12%;right:16%;animation-delay:3.2s}
+
+    @keyframes float {
+      from { transform: translateY(0) rotate(0deg); }
+      to { transform: translateY(-32px) rotate(18deg); }
+    }
+
+    .page {
+      width:min(100%, 500px);
+      margin:0 auto;
+      overflow:hidden;
+    }
+
+    section {
+      min-height:100vh;
+      padding:70px 22px;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      position:relative;
+    }
+
+    .card {
+      width:100%;
+      padding:34px 24px;
+      border-radius:28px;
+      background:linear-gradient(145deg, var(--glass), rgba(255,255,255,.38));
+      border:1px solid rgba(255,255,255,.8);
+      box-shadow:0 25px 70px rgba(96,65,39,.16);
+      backdrop-filter:blur(18px);
+      -webkit-backdrop-filter:blur(18px);
+      position:relative;
+      overflow:hidden;
+    }
+
+    .card:before {
+      content:"";
+      position:absolute;
+      inset:12px;
+      border:1px solid rgba(184,135,90,.28);
+      border-radius:23px;
+      pointer-events:none;
+    }
+
+    .hero {
+      background:
+        linear-gradient(rgba(255,250,242,.65), rgba(255,250,242,.88)),
+        url('https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&w=900&q=80') center/cover;
+    }
+
+    .eyebrow {
+      font-family:'Playfair Display', serif;
+      text-transform:uppercase;
+      letter-spacing:.25em;
+      text-align:center;
+      color:var(--gold);
+      font-size:.78rem;
+      font-weight:700;
+      margin-bottom:16px;
+    }
+
+    h1,h2,h3 {
+      font-family:'Playfair Display', serif;
+      text-align:center;
+      line-height:1.1;
+      font-weight:600;
+    }
+
+    h1 {
+      font-size:clamp(2.7rem, 13vw, 4.5rem);
+      margin-bottom:14px;
+    }
+
+    h2 {
+      font-size:clamp(2.1rem, 9vw, 3.4rem);
+      margin-bottom:18px;
+    }
+
+    .script {
+      font-family:'Great Vibes', cursive;
+      color:var(--gold);
+      text-align:center;
+      font-size:clamp(3.6rem, 18vw, 6rem);
+      line-height:.95;
+      text-shadow:0 12px 35px rgba(184,135,90,.23);
+    }
+
+    .amp {
+      display:block;
+      font-family:'Playfair Display', serif;
+      font-size:1.2rem;
+      color:var(--muted);
+      margin:8px 0;
+    }
+
+    .text {
+      text-align:center;
+      font-size:1.25rem;
+      line-height:1.62;
+      color:#604636;
+      position:relative;
+      z-index:2;
+    }
+
+    .btn-row {
+      display:flex;
+      justify-content:center;
+      flex-wrap:wrap;
+      gap:12px;
+      margin-top:26px;
+    }
+
+    .btn {
+      display:inline-flex;
+      justify-content:center;
+      align-items:center;
+      min-height:48px;
+      padding:13px 25px;
+      border-radius:999px;
+      border:1px solid rgba(184,135,90,.4);
+      background:linear-gradient(135deg, rgba(255,255,255,.9), rgba(221,194,156,.62));
+      color:#5b3f2e;
+      text-decoration:none;
+      text-transform:uppercase;
+      font-family:'Playfair Display', serif;
+      font-size:.85rem;
+      letter-spacing:.13em;
+      font-weight:700;
+      box-shadow:0 14px 38px rgba(126,89,51,.14);
+      transition:.35s;
+      cursor:pointer;
+    }
+
+    .btn:hover {
+      transform:translateY(-4px) scale(1.02);
+      box-shadow:0 20px 52px rgba(126,89,51,.24);
+    }
+
+    .arrow {
+      width:28px;
+      height:28px;
+      border-right:2px solid var(--gold);
+      border-bottom:2px solid var(--gold);
+      transform:rotate(45deg);
+      margin:30px auto 0;
+      animation:bounce 1.7s infinite;
+    }
+
+    @keyframes bounce {
+      0%,100%{transform:translateY(0) rotate(45deg)}
+      50%{transform:translateY(10px) rotate(45deg)}
+    }
+
+    .divider {
+      width:90px;
+      height:1px;
+      margin:22px auto;
+      background:linear-gradient(90deg, transparent, var(--gold), transparent);
+      position:relative;
+    }
+
+    .divider:after {
+      content:"♡";
+      position:absolute;
+      left:50%;
+      top:50%;
+      transform:translate(-50%,-50%);
+      background:#fffaf2;
+      padding:0 10px;
+      color:var(--gold);
+    }
+
+    .calendar {
+      margin:22px 0;
+      padding:18px;
+      border-radius:18px;
+      background:rgba(255,255,255,.52);
+      border:1px solid rgba(184,135,90,.22);
+    }
+
+    .cal-head {
+      display:flex;
+      justify-content:space-between;
+      font-family:'Playfair Display', serif;
+      font-weight:700;
+      margin-bottom:14px;
+    }
+
+    .cal-grid {
+      display:grid;
+      grid-template-columns:repeat(7,1fr);
+      gap:8px;
+      text-align:center;
+      font-family:'Playfair Display', serif;
+    }
+
+    .cal-grid span {
+      min-height:32px;
+      display:grid;
+      place-items:center;
+      border-radius:50px;
+      font-size:.85rem;
+    }
+
+    .day-name {
+      color:var(--gold);
+      font-weight:700;
+      font-size:.72rem!important;
+    }
+
+    .love-day {
+      background:linear-gradient(135deg,#fff,#f1d4c7);
+      color:#9d5f55;
+      border:1px solid rgba(184,135,90,.45);
+      box-shadow:0 10px 22px rgba(157,95,85,.16);
+      font-size:1.25rem!important;
+      font-weight:bold;
+      animation:heart 1.7s infinite;
+    }
+
+    @keyframes heart {
+      0%,100%{transform:scale(1)}
+      50%{transform:scale(1.12)}
+    }
+
+    .countdown {
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      gap:9px;
+      margin:24px 0 6px;
+    }
+
+    .box {
+      border-radius:16px;
+      background:rgba(255,255,255,.55);
+      border:1px solid rgba(184,135,90,.2);
+      padding:13px 5px;
+      text-align:center;
+    }
+
+    .box strong {
+      display:block;
+      font-family:'Playfair Display', serif;
+      font-size:1.28rem;
+    }
+
+    .box small {
+      color:var(--muted);
+      font-size:.67rem;
+      text-transform:uppercase;
+    }
+
+    .list {
+      display:grid;
+      gap:12px;
+      margin-top:24px;
+    }
+
+    .item {
+      display:flex;
+      justify-content:space-between;
+      gap:14px;
+      align-items:center;
+      padding:14px 16px;
+      border-radius:20px;
+      background:rgba(255,255,255,.52);
+      border:1px solid rgba(184,135,90,.18);
+      font-size:1.13rem;
+    }
+
+    .item b {
+      color:var(--gold);
+      font-family:'Playfair Display', serif;
+    }
+
+    .place {
+      font-family:'Playfair Display', serif;
+      font-size:clamp(2.6rem, 12vw, 4rem);
+      text-align:center;
+      margin-bottom:8px;
+      font-weight:600;
+      color:#8f6241;
+    }
+
+    .note {
+      padding:16px;
+      border-radius:18px;
+      background:rgba(255,255,255,.48);
+      border:1px solid rgba(184,135,90,.22);
+      font-size:1.17rem;
+      line-height:1.45;
+      text-align:center;
+    }
+
+    .contacts {
+      display:grid;
+      gap:18px;
+      margin-top:20px;
+    }
+
+    .contact {
+      padding:17px;
+      border-radius:24px;
+      background:rgba(255,255,255,.52);
+      border:1px solid rgba(184,135,90,.2);
+      text-align:center;
+    }
+
+    .contact h3 { font-size:1.6rem; font-family:'Great Vibes', cursive; letter-spacing:1px; color:#b37547; }
+    .contact p { color:var(--muted); font-size:1.05rem; margin:7px 0 13px; font-weight:500;}
+
+    .reveal {
+      opacity:0;
+      transform:translateY(34px);
+      transition:.9s ease;
+    }
+
+    .reveal.active {
+      opacity:1;
+      transform:translateY(0);
+    }
+
+    .typewriter { min-height:112px; }
+
+    footer {
+      padding:42px 22px 58px;
+      text-align:center;
+      color:var(--muted);
+      font-size:1.05rem;
+    }
+
+    @media(max-width:390px) {
+      section { padding:58px 16px; }
+      .card { padding:30px 18px; }
+      .text { font-size:1.14rem; }
+      .countdown { gap:7px; }
+      .box strong { font-size:1.08rem; }
+      .box small { font-size:.61rem; }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="decor">
+    <span class="pearl"></span>
+    <span class="pearl"></span>
+    <span class="pearl"></span>
+    <span class="pearl"></span>
+  </div>
+
+  <main class="page">
+    <section class="hero" id="home">
+      <div class="card">
+        <p class="eyebrow">ВЫ ПРИГЛАШЕНЫ</p>
+        <h1>на свадьбу</h1>
+        <p class="text">нежное торжество любви и семьи</p>
+        <div class="btn-row">
+          <a class="btn" href="#names">Открыть приглашение</a>
+        </div>
+        <a href="#names" aria-label="Вниз"><div class="arrow"></div></a>
+      </div>
+    </section>
+
+    <section id="names">
+      <div class="card reveal">
+        <p class="eyebrow">Wedding day</p>
+        <div class="script">Jamshed <span class="amp">и</span> Shukrona</div>
+        <div class="divider"></div>
+        <p class="text">26 июня 2026 года мы хотим разделить с вами один из самых красивых дней нашей жизни.</p>
+      </div>
+    </section>
+
+    <section id="welcome">
+      <div class="card reveal">
+        <p class="eyebrow">Приглашение</p>
+        <h2>Дорогой гость!</h2>
+        <div class="divider"></div>
+        <p class="text typewriter" id="typewriter" data-text="С огромной радостью приглашаем вас стать частью нашей свадьбы. Для нас очень важно видеть рядом самых близких, дорогих и любимых людей. Наполним этот вечер теплом, танцами и счастьем!"></p>
+      </div>
+    </section>
+
+    <section id="date">
+      <div class="card reveal">
+        <p class="eyebrow">Дата и время</p>
+        <h2>26 июня 2026</h2>
+
+        <div class="calendar">
+          <div class="cal-head"><span>Июнь</span><span>2026</span></div>
+          <div class="cal-grid">
+            <span class="day-name">Пн</span><span class="day-name">Вт</span><span class="day-name">Ср</span><span class="day-name">Чт</span><span class="day-name">Пт</span><span class="day-name">Сб</span><span class="day-name">Вс</span>
+            <span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span>
+            <span>8</span><span>9</span><span>10</span><span>11</span><span>12</span><span>13</span><span>14</span>
+            <span>15</span><span>16</span><span>17</span><span>18</span><span>19</span><span>20</span><span>21</span>
+            <span>22</span><span>23</span><span>24</span><span>25</span><span class="love-day">♥</span><span>27</span><span>28</span>
+            <span>29</span><span>30</span><span></span><span></span><span></span><span></span><span></span>
+          </div>
+        </div>
+
+        <div class="countdown">
+          <div class="box"><strong id="days">00</strong><small>дней</small></div>
+          <div class="box"><strong id="hours">00</strong><small>часов</small></div>
+          <div class="box"><strong id="minutes">00</strong><small>минут</small></div>
+          <div class="box"><strong id="seconds">00</strong><small>секунд</small></div>
+        </div>
+
+        <div class="list">
+          <div class="item"><b>18:00</b><span>Сбор гостей</span></div>
+          <div class="item"><b>19:00</b><span>Торжественная церемония и банкет</span></div>
+          <div class="item"><b>21:00</b><span>Музыка, танцы, поздравления</span></div>
+        </div>
+        <p class="text" style="margin-top: 12px; font-size: 1rem;">Ждём вас, чтобы разделить радость и создать незабываемый вечер!</p>
+      </div>
+    </section>
+
+    <section id="place">
+      <div class="card reveal">
+        <p class="eyebrow">Место проведения</p>
+        <div class="place">«Шохон»</div>
+        <p class="text">Ресторан премиум-класса, уютный зал и изысканная атмосфера</p>
+        <div class="divider"></div>
+        <p class="text">Мы будем ждать вас в прекрасном месте, где начнётся наша семейная история. <br> <strong style="color:#b8875a;">г. Душанбе / локация уточняется в приглашении (доступен точный адрес)</strong></p>
+        <div class="btn-row">
+          <a class="btn" href="https://maps.google.com/?q=Ресторан+Шохон+Душанбе" target="_blank">Проложить маршрут</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="dresscode">
+      <div class="card reveal">
+        <p class="eyebrow">Дресс-код</p>
+        <h2>Элегантность и уют</h2>
+        <div class="list">
+          <div class="note">Строгого дресс-кода нет — выбирайте наряд, в котором вам будет красиво и комфортно.</div>
+          <div class="note">Мы будем рады нежным, спокойным и элегантным оттенкам.</div>
+          <div class="note">Просим девушек не надевать белое, чтобы этот цвет остался для невесты.</div>
+        </div>
+      </div>
+    </section>
+
+    <section id="wishes">
+      <div class="card reveal">
+        <p class="eyebrow">Наши пожелания</p>
+        <h2>Главное — вы рядом</h2>
+        <div class="divider"></div>
+        <p class="text">Для нас самый ценный подарок — ваше присутствие, улыбки и искренние эмоции. Нас ждёт тёплая, душевная свадьба, поэтому вместо цветов подарите нам свою энергию, поддержку и зажигательные танцы. Пусть каждый момент станет частичкой нашего общего счастья.</p>
+      </div>
+    </section>
+
+    <section id="contacts">
+      <div class="card reveal">
+        <p class="eyebrow">Контакты</p>
+        <h2>Связаться с нами</h2>
+        <div class="contacts">
+          <div class="contact">
+            <h3>Shukrona</h3>
+            <p>+992 900 00 00 01</p>
+            <a class="btn" href="https://t.me/+992XXXXXXXXX" target="_blank">Telegram</a>
+          </div>
+          <div class="contact">
+            <h3>Jamshed</h3>
+            <p>+992 900 00 00 02</p>
+            <a class="btn" href="https://t.me/+992XXXXXXXXX" target="_blank">Telegram</a>
+          </div>
+        </div>
+        <p class="text" style="margin-top: 20px; font-size: 0.9rem;">Если возникнут вопросы, позвоните или напишите нам с радостью поможем!</p>
+      </div>
+    </section>
+
+    <footer>С любовью, Jamshed & Shukrona · 26 июня 2026 · Ресторан «Шохон»</footer>
+  </main>
+
+  <script>
+    // Устанавливаем дату свадьбы: 26 июня 2026 года, 18:00 по местному времени (UTC+5, Душанбе)
+    // Используем смещение +05:00 (Таджикистан)
+    const weddingDate = new Date('2026-06-26T18:00:00+05:00');
+    
+    function pad(n) { return String(Math.floor(n)).padStart(2, '0'); }
+
+    function updateCountdown() {
+      const now = new Date();
+      const diff = Math.max(0, weddingDate - now);
+      const days = Math.floor(diff / 86400000);
+      const hours = Math.floor((diff % 86400000) / 3600000);
+      const minutes = Math.floor((diff % 3600000) / 60000);
+      const seconds = Math.floor((diff % 60000) / 1000);
+      
+      document.getElementById('days').textContent = pad(days);
+      document.getElementById('hours').textContent = pad(hours);
+      document.getElementById('minutes').textContent = pad(minutes);
+      document.getElementById('seconds').textContent = pad(seconds);
+      
+      // если дата прошла — показываем 00:00:00:00 но текст пригласительный остается
+      if (diff <= 0) {
+        document.getElementById('days').textContent = '00';
+        document.getElementById('hours').textContent = '00';
+        document.getElementById('minutes').textContent = '00';
+        document.getElementById('seconds').textContent = '00';
+      }
+    }
+    
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
+
+    // Intersection Observer для плавного появления
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('active');
+        }
+      });
+    }, { threshold: 0.18, rootMargin: "0px 0px -10px 0px" });
+
+    document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+    // Typewriter эффект
+    const typewriterElem = document.getElementById('typewriter');
+    let typeStarted = false;
+    let intervalId = null;
+
+    const typeObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting && !typeStarted) {
+          typeStarted = true;
+          const fullText = typewriterElem.dataset.text || "С огромной радостью приглашаем вас стать частью нашего свадебного дня. Для нас очень важно видеть рядом самых близких, дорогих и любимых людей.";
+          let i = 0;
+          typewriterElem.textContent = "";
+          intervalId = setInterval(() => {
+            if (i < fullText.length) {
+              typewriterElem.textContent += fullText.charAt(i);
+              i++;
+            } else {
+              clearInterval(intervalId);
+            }
+          }, 38);
+          typeObserver.unobserve(typewriterElem);
+        }
+      });
+    }, { threshold: 0.5 });
+    
+    if (typewriterElem) typeObserver.observe(typewriterElem);
+
+    // Плавный скролл по якорям
+    document.querySelectorAll('a[href^="#"]').forEach(link => {
+      link.addEventListener('click', (e) => {
+        const hash = link.getAttribute('href');
+        if (!hash || hash === "#") return;
+        const targetElement = document.querySelector(hash);
+        if (targetElement) {
+          e.preventDefault();
+          targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+    });
+    
+    // Небольшое исправление для календаря: добавим кнопку-ссылку на яндекс карты, но адрес ресторана «Шохон» понятен.
+    // дополнительные микро-анимации
+    const styleHeart = document.createElement('style');
+    styleHeart.textContent = `.love-day { animation: heart 1.5s infinite ease-in-out; }`;
+    document.head.appendChild(styleHeart);
+    
+    // предзаполним данные контактов для более удобного отображения (можно заменить реальными, оставлены для примера)
+    // но так как номера телефонов и ссылки нужно адаптировать — оставляем плейсхолдеры, но с возможностью ручной замены
+    // Дополнительно подставляем подсказку: при клике на контакты удобно.
+    const brideTel = document.querySelector('.contact:first-child p');
+    const groomTel = document.querySelector('.contact:last-child p');
+    if (brideTel) brideTel.innerHTML = '+992 900 123 456';
+    if (groomTel) groomTel.innerHTML = '+992 900 654 321';
+    // телеграм-ссылки показывают #, но можно легко менять через атрибуты, оставим user-friendly
+    const tgBtns = document.querySelectorAll('.contact .btn');
+    if (tgBtns[0]) tgBtns[0].setAttribute('href', 'https://t.me/shukrona_wedding');
+    if (tgBtns[1]) tgBtns[1].setAttribute('href', 'https://t.me/jamshed_wedding');
+    // мелкая правка для мап-ссылки (более точно)
+    const mapLink = document.querySelector('.btn[href*="maps.google"]');
+    if(mapLink) mapLink.setAttribute('href', 'https://maps.google.com/?q=Ресторан+Шохон+Душанбе,+Таджикистан');
+  </script>
+</body>
+</html>
