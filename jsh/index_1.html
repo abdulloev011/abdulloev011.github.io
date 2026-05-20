@@ -404,6 +404,50 @@
       font-size:1.05rem;
     }
 
+    /* Музыкальный плеер: красивая кнопка с анимацией */
+    .music-player {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      z-index: 1000;
+      background: rgba(255,250,242,.92);
+      backdrop-filter: blur(14px);
+      border-radius: 50%;
+      width: 56px;
+      height: 56px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 12px 32px rgba(100,70,45,.28);
+      border: 1px solid rgba(184,135,90,.6);
+      cursor: pointer;
+      transition: all 0.25s ease;
+      font-size: 30px;
+      font-family: 'Playfair Display', serif;
+      color: #b8875a;
+    }
+    .music-player:hover {
+      transform: scale(1.08);
+      background: #fffcf7;
+      box-shadow: 0 16px 40px rgba(184,135,90,.38);
+    }
+    .music-player.muted {
+      opacity: 0.85;
+      filter: grayscale(0.08);
+    }
+    .music-player span {
+      transition: transform 0.2s;
+      display: inline-block;
+    }
+    /* анимация вращения для ноты, когда играет музыка */
+    .music-player:not(.muted) span {
+      animation: vinylSpin 2.8s infinite linear;
+    }
+    @keyframes vinylSpin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
     @media(max-width:390px) {
       section { padding:58px 16px; }
       .card { padding:30px 18px; }
@@ -411,6 +455,13 @@
       .countdown { gap:7px; }
       .box strong { font-size:1.08rem; }
       .box small { font-size:.61rem; }
+      .music-player {
+        width: 48px;
+        height: 48px;
+        font-size: 26px;
+        bottom: 18px;
+        right: 18px;
+      }
     }
   </style>
 </head>
@@ -421,6 +472,11 @@
     <span class="pearl"></span>
     <span class="pearl"></span>
     <span class="pearl"></span>
+  </div>
+
+  <!-- Кнопка управления музыкой -->
+  <div class="music-player" id="musicToggle" aria-label="Управление фоновой музыкой">
+    <span>🎵</span>
   </div>
 
   <main class="page">
@@ -521,18 +577,104 @@
       </div>
     </section>
 
-    
-
     <footer>С любовью, Jamshed & Shukrona · 26 июня 2026 · Ресторан «Шохон»</footer>
   </main>
 
   <script>
-    // Устанавливаем дату свадьбы: 26 июня 2026 года, 18:00 по местному времени (UTC+5, Душанбе)
-    // Используем смещение +05:00 (Таджикистан)
-    const weddingDate = new Date('2026-06-26T18:00:00+05:00');
+    // --------------------------------------------------------------
+    // МУЗЫКА — НАДЁЖНАЯ РАБОТА (прямая ссылка на mp3 с Pixabay)
+    // --------------------------------------------------------------
+    const audio = new Audio('audio.mp3');
+    audio.loop = true;
+    audio.volume = 0.55;   // оптимальная громкость для фона
+    audio.preload = 'auto';
     
+    let musicPlaying = false;
+    const musicBtn = document.getElementById('musicToggle');
+    const iconSpan = musicBtn.querySelector('span');
+    
+    // обновление внешнего вида кнопки
+    function updateMusicUI() {
+      if (musicPlaying) {
+        iconSpan.textContent = '🎵';
+        musicBtn.classList.remove('muted');
+        musicBtn.setAttribute('aria-label', 'Выключить музыку');
+      } else {
+        iconSpan.textContent = '🔇';
+        musicBtn.classList.add('muted');
+        musicBtn.setAttribute('aria-label', 'Включить музыку');
+      }
+    }
+    
+    // запуск музыки с обработкой ошибок
+    function playMusic() {
+      audio.play().then(() => {
+        musicPlaying = true;
+        updateMusicUI();
+      }).catch((err) => {
+        console.warn('Ошибка воспроизведения:', err);
+        musicPlaying = false;
+        updateMusicUI();
+      });
+    }
+    
+    // пауза музыки
+    function pauseMusic() {
+      audio.pause();
+      musicPlaying = false;
+      updateMusicUI();
+    }
+    
+    // обработчик клика по кнопке
+    musicBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      if (musicPlaying) {
+        pauseMusic();
+      } else {
+        playMusic();
+      }
+    });
+    
+    // --- АВТОЗАПУСК МУЗЫКИ ПОСЛЕ ПЕРВОГО ВЗАИМОДЕЙСТВИЯ С САЙТОМ (клик/скролл/тап) ---
+    // это необходимо из-за политики браузеров (autoplay запрещён без жеста)
+    let interactionHappened = false;
+    
+    function tryAutoStart() {
+      if (interactionHappened) return;
+      interactionHappened = true;
+      // пробуем запустить музыку при первом действии пользователя
+      if (!musicPlaying) {
+        playMusic();
+      }
+      // убираем обработчики после первого срабатывания
+      eventsToRemove.forEach(ev => window.removeEventListener(ev, tryAutoStart));
+    }
+    
+    const eventsToRemove = ['click', 'touchstart', 'scroll', 'keydown'];
+    eventsToRemove.forEach(ev => {
+      window.addEventListener(ev, tryAutoStart, { once: false, passive: true });
+    });
+    
+    // также при загрузке страницы даём возможность "тихо" загрузить аудио, но не играть
+    window.addEventListener('load', () => {
+      audio.load(); // подготавливаем файл
+      // не пытаемся играть автоматически, ждём жеста пользователя
+    });
+    
+    // для отказоустойчивости: если музыка не загрузилась или прервалась, по окончании трека перезапускаем (loop у нас включён, но на всякий случай)
+    audio.addEventListener('ended', () => {
+      if (musicPlaying) {
+        audio.currentTime = 0;
+        audio.play().catch(e => console.log('replay issue', e));
+      }
+    });
+    
+    // --------------------------------------------------------------
+    // ТАЙМЕР ДО СВАДЬБЫ
+    // --------------------------------------------------------------
+    const weddingDate = new Date('2026-06-26T18:00:00+05:00');
     function pad(n) { return String(Math.floor(n)).padStart(2, '0'); }
-
+    
     function updateCountdown() {
       const now = new Date();
       const diff = Math.max(0, weddingDate - now);
@@ -546,7 +688,6 @@
       document.getElementById('minutes').textContent = pad(minutes);
       document.getElementById('seconds').textContent = pad(seconds);
       
-      // если дата прошла — показываем 00:00:00:00 но текст пригласительный остается
       if (diff <= 0) {
         document.getElementById('days').textContent = '00';
         document.getElementById('hours').textContent = '00';
@@ -557,8 +698,10 @@
     
     updateCountdown();
     setInterval(updateCountdown, 1000);
-
-    // Intersection Observer для плавного появления
+    
+    // --------------------------------------------------------------
+    // АНИМАЦИИ ПОЯВЛЕНИЯ
+    // --------------------------------------------------------------
     const revealObserver = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
@@ -566,14 +709,15 @@
         }
       });
     }, { threshold: 0.18, rootMargin: "0px 0px -10px 0px" });
-
     document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
-
-    // Typewriter эффект
+    
+    // --------------------------------------------------------------
+    // ПЕЧАТНЫЙ ТЕКСТ (TYPEWRITER)
+    // --------------------------------------------------------------
     const typewriterElem = document.getElementById('typewriter');
     let typeStarted = false;
     let intervalId = null;
-
+    
     const typeObserver = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting && !typeStarted) {
@@ -593,10 +737,11 @@
         }
       });
     }, { threshold: 0.5 });
-    
     if (typewriterElem) typeObserver.observe(typewriterElem);
-
-    // Плавный скролл по якорям
+    
+    // --------------------------------------------------------------
+    // ПЛАВНАЯ ПРОКРУТКА ПО ЯКОРЯМ
+    // --------------------------------------------------------------
     document.querySelectorAll('a[href^="#"]').forEach(link => {
       link.addEventListener('click', (e) => {
         const hash = link.getAttribute('href');
@@ -609,26 +754,14 @@
       });
     });
     
-    // Небольшое исправление для календаря: добавим кнопку-ссылку на яндекс карты, но адрес ресторана «Шохон» понятен.
-    // дополнительные микро-анимации
-    const styleHeart = document.createElement('style');
-    styleHeart.textContent = `.love-day { animation: heart 1.5s infinite ease-in-out; }`;
-    document.head.appendChild(styleHeart);
-    
-    // предзаполним данные контактов для более удобного отображения (можно заменить реальными, оставлены для примера)
-    // но так как номера телефонов и ссылки нужно адаптировать — оставляем плейсхолдеры, но с возможностью ручной замены
-    // Дополнительно подставляем подсказку: при клике на контакты удобно.
-    const brideTel = document.querySelector('.contact:first-child p');
-    const groomTel = document.querySelector('.contact:last-child p');
-    if (brideTel) brideTel.innerHTML = '+992 900 123 456';
-    if (groomTel) groomTel.innerHTML = '+992 900 654 321';
-    // телеграм-ссылки показывают #, но можно легко менять через атрибуты, оставим user-friendly
-    const tgBtns = document.querySelectorAll('.contact .btn');
-    if (tgBtns[0]) tgBtns[0].setAttribute('href', 'https://t.me/shukrona_wedding');
-    if (tgBtns[1]) tgBtns[1].setAttribute('href', 'https://t.me/jamshed_wedding');
-    // мелкая правка для мап-ссылки (более точно)
+    // ссылка на карты Google (уточним)
     const mapLink = document.querySelector('.btn[href*="maps.google"]');
     if(mapLink) mapLink.setAttribute('href', 'https://maps.google.com/?q=Ресторан+Шохон+Душанбе,+Таджикистан');
+    
+    // дополнительное украшение — анимация сердечка
+    const styleHeartAnim = document.createElement('style');
+    styleHeartAnim.textContent = `.love-day { animation: heart 1.5s infinite ease-in-out; }`;
+    document.head.appendChild(styleHeartAnim);
   </script>
 </body>
 </html>
