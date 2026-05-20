@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>Royal Wedding Invitation | Jamshed & Shukrona</title>
+
+    <!-- Google Fonts & Font Awesome -->
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:wght@400;500;600;700;800;900&family=Cormorant+Garamond:wght@300;400;500;600;700&family=Montserrat:wght@200;300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
+    <!-- AOS CSS -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #050b1a;
+            font-family: 'Montserrat', sans-serif;
+            overflow-x: hidden;
+            scroll-snap-type: y mandatory;
+            scroll-behavior: smooth;
+        }
+
+        /* Custom scrollbar luxury */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0a0f1f;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(135deg, #c9a03d, #f5d97a);
+            border-radius: 10px;
+        }
+
+        /* Sections snap */
+        .section {
+            scroll-snap-align: start;
+            min-height: 100vh;
+            width: 100%;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* glassmorphism base */
+        .glass-card {
+            background: rgba(5, 15, 35, 0.55);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(212, 175, 55, 0.25);
+            border-radius: 32px;
+            box-shadow: 0 25px 45px rgba(0,0,0,0.4), 0 0 20px rgba(212,175,55,0.15);
+        }
+
+        /* global luxury gradients */
+        .gold-text {
+            background: linear-gradient(135deg, #f3e7c9, #d4af37, #b48c2c);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        button, .btn-luxury {
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+        }
+
+        /* loading screen */
+        #loading-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #00030a;
+            z-index: 10000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            transition: opacity 1.2s ease, visibility 0.5s;
+        }
+
+        .logo-golden {
+            filter: drop-shadow(0 0 25px rgba(212,175,55,0.7));
+            animation: softPulse 2.2s infinite alternate;
+        }
+
+        @keyframes softPulse {
+            0% { filter: drop-shadow(0 0 10px rgba(212,175,55,0.4)); transform: scale(0.98);}
+            100% { filter: drop-shadow(0 0 35px rgba(212,175,55,0.9)); transform: scale(1.02);}
+        }
+
+        /* particles container */
+        #particles-js, #particles-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        /* common content */
+        .content {
+            position: relative;
+            z-index: 10;
+            text-align: center;
+            padding: 2rem;
+            width: 100%;
+        }
+
+        /* hero video background */
+        .bg-video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1;
+            filter: brightness(0.5) saturate(1.3) hue-rotate(-5deg);
+        }
+
+        /* crystal lights floating */
+        .crystal-light {
+            position: absolute;
+            background: radial-gradient(circle, rgba(212,175,55,0.5), transparent);
+            border-radius: 50%;
+            filter: blur(25px);
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        /* envelope stylings */
+        .envelope-container {
+            perspective: 1200px;
+            cursor: pointer;
+        }
+        .envelope {
+            width: 280px;
+            height: 190px;
+            background: #0c1020;
+            border-radius: 16px;
+            box-shadow: 0 30px 40px rgba(0,0,0,0.6), inset 0 1px 0 rgba(212,175,55,0.3);
+            position: relative;
+            transition: transform 0.6s ease;
+            border: 1px solid #d4af37;
+        }
+        .envelope-flap {
+            width: 100%;
+            height: 50%;
+            background: linear-gradient(145deg, #1a1f2e, #0a0e1c);
+            clip-path: polygon(0% 0%, 100% 0%, 50% 100%);
+            transition: all 0.7s cubic-bezier(0.23, 1, 0.32, 1);
+            transform-origin: top;
+        }
+        .envelope.open .envelope-flap {
+            transform: rotateX(180deg);
+        }
+        .invitation-card {
+            background: rgba(10, 14, 28, 0.95);
+            backdrop-filter: blur(8px);
+            border-radius: 20px;
+            padding: 20px;
+            border: 1px solid gold;
+        }
+
+        /* countdown */
+        .timer-block {
+            background: rgba(0,0,0,0.5);
+            backdrop-filter: blur(15px);
+            border-radius: 20px;
+            padding: 0.8rem 1rem;
+            min-width: 80px;
+            border: 1px solid rgba(212,175,55,0.5);
+        }
+        .timer-number {
+            font-size: 2.8rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #fff2ce, #d4af37);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        /* RSVP form */
+        .luxury-input {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(212,175,55,0.4);
+            border-radius: 40px;
+            padding: 14px 20px;
+            color: #fff;
+            font-family: 'Montserrat', sans-serif;
+            width: 100%;
+            transition: 0.3s;
+        }
+        .luxury-input:focus {
+            border-color: #d4af37;
+            outline: none;
+            box-shadow: 0 0 15px rgba(212,175,55,0.3);
+        }
+
+        /* music button */
+        .music-btn {
+            position: fixed;
+            bottom: 25px;
+            right: 20px;
+            width: 55px;
+            height: 55px;
+            border-radius: 50%;
+            background: rgba(0,0,0,0.5);
+            backdrop-filter: blur(12px);
+            border: 1px solid gold;
+            color: gold;
+            font-size: 26px;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 0 20px rgba(0,0,0,0.5);
+            transition: 0.3s;
+        }
+
+        .music-btn:hover {
+            transform: scale(1.1);
+            background: rgba(212,175,55,0.2);
+        }
+
+        /* gallery slider */
+        .gallery-scroll {
+            display: flex;
+            overflow-x: auto;
+            gap: 20px;
+            scroll-snap-type: x mandatory;
+            padding: 20px;
+        }
+        .gallery-item {
+            min-width: 280px;
+            height: 400px;
+            background: linear-gradient(145deg, #111827, #030712);
+            border-radius: 30px;
+            scroll-snap-align: start;
+            border: 1px solid rgba(212,175,55,0.5);
+            box-shadow: 0 20px 35px rgba(0,0,0,0.5);
+            background-size: cover;
+            background-position: center;
+            transition: 0.4s;
+        }
+
+        /* responsive */
+        @media (max-width: 600px) {
+            .timer-number { font-size: 2rem; }
+            .timer-block { padding: 0.5rem; min-width: 65px; }
+            .content { padding: 1.5rem; }
+            h1 { font-size: 2.2rem; }
+        }
+    </style>
+</head>
+<body>
+
+<div id="loading-screen">
+    <div id="particles-load"></div>
+    <div style="text-align:center; z-index:2;">
+        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Cpath fill='%23d4af37' d='M100,20 L130,70 L185,80 L145,120 L155,180 L100,150 L45,180 L55,120 L15,80 L70,70 L100,20Z' /%3E%3Ctext x='100' y='135' font-size='28' text-anchor='middle' fill='%23000000' font-family='Great Vibes'%3E&%3C/text%3E%3C/svg%3E" alt="Luxury Logo" style="width:120px; height:120px;" class="logo-golden">
+        <p style="color:#d4af37; font-family:'Playfair Display'; letter-spacing:4px; margin-top:20px;">ROYAL WEDDING</p>
+    </div>
+</div>
+
+<div class="music-btn" id="musicToggleBtn">
+    <i class="fas fa-play"></i>
+</div>
+<audio id="bgMusic" loop preload="auto">
+    <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+</audio>
+
+<!-- MAIN SECTIONS -->
+<div class="section" id="welcomeSection">
+    <video autoplay muted loop playsinline class="bg-video">
+        <source src="https://assets.mixkit.co/videos/preview/mixkit-luxury-chandelier-and-blue-ambiance-32859-large.mp4" type="video/mp4">
+    </video>
+    <div id="particles-bg-welcome"></div>
+    <div class="content" data-aos="fade-up" data-aos-duration="1500">
+        <div style="margin-bottom: 30px;">
+            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Cpath fill='%23d4af37' d='M100,20 L130,70 L185,80 L145,120 L155,180 L100,150 L45,180 L55,120 L15,80 L70,70 L100,20Z' /%3E%3Ctext x='100' y='140' font-size='32' text-anchor='middle' fill='%23000000' font-family='Great Vibes'%3E&%3C/text%3E%3C/svg%3E" alt="logo" style="width:90px; filter: drop-shadow(0 0 15px gold);">
+        </div>
+        <h1 class="gold-text" style="font-family: 'Great Vibes'; font-size: 3.8rem; font-weight: 400;">Wedding Invitation</h1>
+        <p style="font-size: 1.5rem; font-family: 'Cormorant Garamond'; color: #e9e6d7; margin: 20px 0;">Мы приглашаем вас на нашу свадьбу</p>
+        <button id="openInviteBtn" class="btn-luxury" style="background: rgba(0,0,0,0.5); backdrop-filter: blur(12px); border: 1.5px solid #d4af37; color: #d4af37; padding: 14px 42px; border-radius: 50px; font-size: 1.2rem; font-weight: 600; letter-spacing: 2px;">Открыть приглашение</button>
+    </div>
+</div>
+
+<div class="section" id="envelopeSection" style="display: none; background: radial-gradient(circle at center, #010514, #00020a);">
+    <div class="content" data-aos="zoom-in">
+        <div class="envelope-container" id="envelopeContainer">
+            <div class="envelope" id="envelope">
+                <div class="envelope-flap"></div>
+                <div style="padding: 20px; text-align: center; color: #d4af37;"><i class="fas fa-envelope-open-text"></i> <span style="font-family: 'Playfair Display';">Touch</span></div>
+            </div>
+        </div>
+        <div id="invitationReveal" style="display: none; margin-top: 30px;" class="invitation-card glass-card">
+            <p style="font-family: 'Great Vibes'; font-size: 2rem; color: #d4af37;">Jamshed & Shukrona</p>
+            <p style="font-family: 'Cormorant Garamond';">Имеют честь пригласить вас разделить с нами радость бракосочетания</p>
+        </div>
+    </div>
+</div>
+
+<div class="section" id="coupleSection" style="display: none; background: #030711;">
+    <div id="particles-couple"></div>
+    <div class="content">
+        <h1 class="gold-text" style="font-size: 4rem; font-family: 'Great Vibes';" data-aos="fade-right">Jamshed</h1>
+        <i class="fas fa-heart" style="color: #d4af37; font-size: 2rem; margin: 20px;"></i>
+        <h1 class="gold-text" style="font-size: 4rem; font-family: 'Great Vibes';" data-aos="fade-left">Shukrona</h1>
+        <div style="width: 80px; height: 2px; background: gold; margin: 30px auto;"></div>
+        <p data-aos="fade-up" style="font-family: 'Montserrat'; letter-spacing: 2px;">Две судьбы, одна любовь</p>
+    </div>
+</div>
+
+<div class="section" id="detailsSection" style="display: none; background: #01061a;">
+    <div class="content" style="display: flex; flex-direction: column; gap: 2rem;">
+        <h2 class="gold-text" data-aos="fade-up">Свадебные детали</h2>
+        <div style="display: flex; flex-wrap: wrap; gap: 1.5rem; justify-content: center;">
+            <div class="glass-card" style="padding: 1.5rem; width: 220px;" data-aos="flip-left"><i class="fas fa-calendar-alt" style="font-size: 2rem; color: gold;"></i><h3>15 Августа 2025</h3><p>Суббота, 18:00</p></div>
+            <div class="glass-card" style="padding: 1.5rem; width: 220px;" data-aos="flip-left"><i class="fas fa-clock" style="font-size: 2rem; color: gold;"></i><h3>18:00 - 00:00</h3><p>Сбор гостей в 17:30</p></div>
+            <div class="glass-card" style="padding: 1.5rem; width: 240px;" data-aos="flip-left"><i class="fas fa-map-marker-alt" style="font-size: 2rem; color: gold;"></i><h3>Royal Blue Hall</h3><p>Душанбе, ул. Сомони 17, Президент-отель</p></div>
+        </div>
+    </div>
+</div>
+
+<div class="section" id="restaurantSection" style="display: none; background: url('https://images.pexels.com/photos/260922/pexels-photo-260922.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2') center/cover fixed;">
+    <div style="position: absolute; top:0; left:0; width:100%; height:100%; background: rgba(0,0,0,0.7);"></div>
+    <div class="content glass-card" style="max-width: 80%;" data-aos="zoom-in-up">
+        <i class="fas fa-chandelier" style="font-size: 3rem; color: gold;"></i>
+        <h3 style="font-family: 'Playfair Display';">Хрустальная атмосфера премиум-ресторана</h3>
+        <p>Изысканный банкетный зал с подвесными светильниками, синяя кинематографическая подсветка и золотой декор</p>
+    </div>
+</div>
+
+<div class="section" id="countdownSection" style="display: none; background: #03020c;">
+    <div class="content">
+        <h2 class="gold-text">До великого дня осталось</h2>
+        <div id="timer" style="display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; margin: 40px 0;"></div>
+    </div>
+</div>
+
+<div class="section" id="loveStorySection" style="display: none; background: linear-gradient(125deg, #030715, #030010);">
+    <div class="content glass-card" style="max-width: 85%; padding: 2rem;" data-aos="fade-up">
+        <i class="fas fa-feather-alt" style="color: gold; font-size: 2rem;"></i>
+        <p style="font-family: 'Cormorant Garamond'; font-size: 1.6rem; margin-top: 20px;">"С первого взгляда в сиянии хрустальных люстр мы поняли — наша история будет вечной. Приглашаем вас стать свидетелями нашего счастья."</p>
+        <div class="gold-text" style="margin-top: 30px;">J & S</div>
+    </div>
+</div>
+
+<div class="section" id="gallerySection" style="display: none; background: #080c1a;">
+    <div class="content">
+        <h2 class="gold-text">Наши мгновения</h2>
+        <div class="gallery-scroll" id="gallerySlider">
+            <div class="gallery-item" style="background-image: url('https://images.pexels.com/photos/2253870/pexels-photo-2253870.jpeg?auto=compress&cs=tinysrgb&w=600');"></div>
+            <div class="gallery-item" style="background-image: url('https://images.pexels.com/photos/1024993/pexels-photo-1024993.jpeg?auto=compress&cs=tinysrgb&w=600');"></div>
+            <div class="gallery-item" style="background-image: url('https://images.pexels.com/photos/1687681/pexels-photo-1687681.jpeg?auto=compress&cs=tinysrgb&w=600');"></div>
+            <div class="gallery-item" style="background-image: url('https://images.pexels.com/photos/3171837/pexels-photo-3171837.jpeg?auto=compress&cs=tinysrgb&w=600');"></div>
+        </div>
+    </div>
+</div>
+
+<div class="section" id="rsvpSection" style="display: none; background: #000715;">
+    <div class="content glass-card" style="max-width: 500px; padding: 2rem;">
+        <h2 class="gold-text">Подтвердите присутствие</h2>
+        <form id="rsvpForm">
+            <input type="text" class="luxury-input" placeholder="Ваше имя" id="guestName" required><br><br>
+            <input type="tel" class="luxury-input" placeholder="Телефон" id="guestPhone"><br><br>
+            <select class="luxury-input" id="attending">
+                <option value="yes">С удовольствием приду</option>
+                <option value="no">К сожалению, не смогу</option>
+            </select><br><br>
+            <button type="submit" class="btn-luxury" style="padding: 12px; width: 100%; background: #d4af37; color: black; font-weight: bold;">Отправить →</button>
+        </form>
+        <p id="rsvpMsg" style="margin-top: 15px; color:#d4af37;"></p>
+    </div>
+</div>
+
+<div class="section" id="finalSection" style="display: none; background: radial-gradient(circle, #01051f, #000000);">
+    <div class="content">
+        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Cpath fill='%23d4af37' d='M100,20 L130,70 L185,80 L145,120 L155,180 L100,150 L45,180 L55,120 L15,80 L70,70 L100,20Z' /%3E%3Ctext x='100' y='135' font-size='28' text-anchor='middle' fill='%23000000' font-family='Great Vibes'%3E&%3C/text%3E%3C/svg%3E" style="width:100px; filter: drop-shadow(0 0 20px gold);">
+        <h1 class="gold-text" style="font-family: 'Great Vibes'; font-size: 3rem;">Благодарим!</h1>
+        <p style="color: white;">Ждем вас на нашей сказочной свадьбе</p>
+        <footer style="margin-top: 60px; color: #b48c2c;">© Royal Wedding — Jamshed & Shukrona</footer>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+<script>
+    AOS.init({ duration: 1000, once: false, mirror: true });
+    
+    // loading screen + particles
+    setTimeout(() => {
+        let loader = document.getElementById('loading-screen');
+        loader.style.opacity = '0';
+        setTimeout(() => { loader.style.display = 'none'; }, 1300);
+    }, 2800);
+    
+    particlesJS('particles-load', {
+        particles: { number: { value: 80 }, color: { value: "#d4af37" }, shape: { type: "circle" }, opacity: { value: 0.5 }, size: { value: 2 }, move: { enable: true, speed: 1 } },
+        interactivity: { events: { onhover: { enable: false } } }
+    });
+    particlesJS('particles-bg-welcome', {
+        particles: { number: { value: 140 }, color: { value: "#2a3b6e" }, opacity: { value: 0.3 }, size: { value: 2 }, move: { speed: 1.5 } }
+    });
+    particlesJS('particles-couple', {
+        particles: { number: { value: 100 }, color: { value: "#d4af37" }, opacity: { value: 0.4 }, move: { speed: 1.2 } }
+    });
+    
+    let sections = ['welcomeSection','envelopeSection','coupleSection','detailsSection','restaurantSection','countdownSection','loveStorySection','gallerySection','rsvpSection','finalSection'];
+    let currentIndex = 0;
+    
+    function showSection(index) {
+        sections.forEach((sec, i) => {
+            let el = document.getElementById(sec);
+            if(el) el.style.display = i === index ? 'flex' : 'none';
+        });
+        if(index === 3) startCountdown();
+        if(index === 1) {
+            gsap.fromTo("#envelope", {rotateY:0}, {duration:0.8, boxShadow:"0 0 50px gold", ease:"back"});
+        }
+    }
+    
+    document.getElementById('openInviteBtn').addEventListener('click', () => {
+        gsap.to("#welcomeSection", {opacity:0, duration:1, onComplete:()=>{
+            showSection(1);
+            gsap.fromTo("#envelopeSection", {opacity:0, scale:0.95}, {opacity:1, scale:1, duration:1.2});
+        }});
+    });
+    
+    let envelopeOpened = false;
+    document.getElementById('envelopeContainer').addEventListener('click', () => {
+        if(!envelopeOpened){
+            document.getElementById('envelope').classList.add('open');
+            document.getElementById('invitationReveal').style.display = 'block';
+            gsap.from("#invitationReveal", {opacity:0, y:30, duration:1, delay:0.4});
+            envelopeOpened=true;
+            setTimeout(()=>{ showSection(2); }, 2200);
+        }
+    });
+    
+    // Countdown
+    function startCountdown() {
+        let target = new Date("Aug 15, 2025 18:00:00").getTime();
+        let timerDiv = document.getElementById('timer');
+        if(timerDiv.children.length===0){
+            setInterval(() => {
+                let now = new Date().getTime();
+                let diff = target - now;
+                if(diff<0) diff=0;
+                let days = Math.floor(diff/(1000*60*60*24));
+                let hours = Math.floor((diff%(24*3600000))/3600000);
+                let mins = Math.floor((diff%3600000)/60000);
+                let secs = Math.floor((diff%60000)/1000);
+                timerDiv.innerHTML = `<div class="timer-block"><span class="timer-number">${days}</span><br>Дней</div>
+                                      <div class="timer-block"><span class="timer-number">${hours}</span><br>Часов</div>
+                                      <div class="timer-block"><span class="timer-number">${mins}</span><br>Минут</div>
+                                      <div class="timer-block"><span class="timer-number">${secs}</span><br>Секунд</div>`;
+            }, 1000);
+        }
+    }
+    
+    // RSVP submit
+    document.getElementById('rsvpForm').addEventListener('submit', (e) => {
+        e.preventDefault();
+        let name = document.getElementById('guestName').value;
+        if(name){
+            document.getElementById('rsvpMsg').innerHTML = `✨ Спасибо, ${name}! Ваш ответ принят. Ждем вас ✨`;
+            gsap.to('#rsvpMsg', {scale:1.1, duration:0.3, yoyo:true, repeat:1});
+        }
+    });
+    
+    // Music player 
+    const music = document.getElementById('bgMusic');
+    const musicBtn = document.getElementById('musicToggleBtn');
+    let musicPlaying = false;
+    music.volume = 0.3;
+    musicBtn.addEventListener('click', () => {
+        if(musicPlaying){
+            music.pause();
+            musicBtn.innerHTML = '<i class="fas fa-play"></i>';
+        } else {
+            music.play().catch(e=>console.log("autoplay blocked"));
+            musicBtn.innerHTML = '<i class="fas fa-pause"></i>';
+        }
+        musicPlaying = !musicPlaying;
+    });
+    // autoplay attempt
+    window.addEventListener('click', function initAudio() {
+        if(!musicPlaying) music.play().then(()=>{musicBtn.innerHTML='<i class="fas fa-pause"></i>'; musicPlaying=true;}).catch(()=>{});
+        window.removeEventListener('click', initAudio);
+    });
+    
+    // smooth scroll nav between sections plus additional floating luxury crystals
+    function createCrystals() {
+        for(let i=0;i<25;i++){
+            let crystal = document.createElement('div');
+            crystal.classList.add('crystal-light');
+            let size = Math.random() * 100 + 30;
+            crystal.style.width = size+'px';
+            crystal.style.height = size+'px';
+            crystal.style.left = Math.random()*100+'%';
+            crystal.style.top = Math.random()*100+'%';
+            crystal.style.background = 'radial-gradient(circle, rgba(212,175,55,0.3), rgba(0,0,0,0))';
+            document.body.appendChild(crystal);
+            gsap.to(crystal, {duration:Math.random()*10+5, y: -30, repeat:-1, yoyo:true, opacity:0.5});
+        }
+    }
+    createCrystals();
+    
+    // automatic next sections via scroll snap event after envelope? but user can scroll also: we link in sequence after envelope open it went to couple, but for luxury experience we implement scroll linking and manually for finish
+    let lastScrolled = 0;
+    window.addEventListener('wheel', (e) => {
+        if(Date.now() - lastScrolled < 800) return;
+        if(currentIndex < sections.length-1 && e.deltaY > 30){
+            if(document.getElementById(sections[currentIndex+1]).style.display !== 'none'){
+                currentIndex++;
+                showSection(currentIndex);
+                lastScrolled = Date.now();
+            }
+        } else if(currentIndex > 0 && e.deltaY < -30){
+            if(document.getElementById(sections[currentIndex-1]).style.display !== 'none'){
+                currentIndex--;
+                showSection(currentIndex);
+                lastScrolled = Date.now();
+            }
+        }
+    });
+    // set initial index after welcome button pressed
+    setTimeout(()=>{currentIndex = 0; showSection(0);}, 100);
+</script>
+</body>
+</html>
