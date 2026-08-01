@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#f7f1e8">
+  <meta name="description" content="Свадебное приглашение Александра и Софии — 20 сентября 2026 года.">
+
+  <!-- ЗАМЕНИТЕ: заголовок, описание и изображение для социальных сетей -->
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="ru_RU">
+  <meta property="og:title" content="Александр & София — свадебное приглашение">
+  <meta property="og:description" content="Будем счастливы разделить этот день вместе с вами.">
+  <meta property="og:image" content="images/hero.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <title>Александр & София — свадебное приглашение</title>
+
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Great+Vibes&family=Manrope:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <a class="skip-link" href="#invitation">Перейти к приглашению</a>
+
+  <header class="site-header" id="siteHeader">
+    <nav class="nav container" aria-label="Главная навигация">
+      <!-- ЗАМЕНИТЕ: первые буквы имён молодожёнов -->
+      <a class="nav__brand" href="#home" aria-label="На главный экран">А<span>&</span>С</a>
+
+      <button class="nav__toggle" id="menuToggle" type="button" aria-expanded="false" aria-controls="navMenu" aria-label="Открыть меню">
+        <span></span><span></span><span></span>
+      </button>
+
+      <ul class="nav__menu" id="navMenu">
+        <li><a href="#invitation">Приглашение</a></li>
+        <li><a href="#date">Дата</a></li>
+        <li><a href="#venue">Место</a></li>
+        <li><a href="#gallery">Галерея</a></li>
+        <li><a class="nav__rsvp" href="#rsvp">Подтвердить участие</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero" id="home" aria-labelledby="heroTitle">
+      <!-- ЗАМЕНИТЕ: файл images/hero.jpg на вашу фотографию -->
+      <div class="hero__overlay"></div>
+      <div class="hero__content container">
+        <p class="hero__eyebrow">Мы женимся!</p>
+        <!-- ЗАМЕНИТЕ: имена молодожёнов -->
+        <h1 class="hero__names" id="heroTitle">
+          <span>Александр</span><b aria-hidden="true">&</b><span>София</span>
+        </h1>
+        <!-- ЗАМЕНИТЕ: дату свадьбы -->
+        <div class="hero__date" aria-label="20 сентября 2026 года">
+          <span></span><time datetime="2026-09-20">20 · 09 · 2026</time><span></span>
+        </div>
+        <a class="button button--light" href="#invitation">
+          Открыть приглашение
+          <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M12 5v14m0 0 6-6m-6 6-6-6"/></svg>
+        </a>
+      </div>
+      <a class="hero__scroll" href="#invitation" aria-label="Прокрутить к приглашению"><span></span></a>
+    </section>
+
+    <section class="section invitation reveal" id="invitation" aria-labelledby="invitationTitle">
+      <div class="container container--narrow">
+        <div class="botanical botanical--top" aria-hidden="true">
+          <svg viewBox="0 0 180 70"><path d="M10 58C45 58 54 19 88 20c31 1 38 31 82 21"/><path d="M45 47c-14-5-18-15-16-25 12 2 20 11 16 25Zm43-27c-3-12 3-20 13-26 6 11 2 22-13 26Zm43 25c6-14 17-20 29-17-2 13-12 21-29 17Z"/></svg>
+        </div>
+        <p class="eyebrow">С особой радостью</p>
+        <h2 class="section-title" id="invitationTitle">Дорогие родные и друзья!</h2>
+        <div class="gold-line" aria-hidden="true"><span></span></div>
+        <p class="invitation__text">Мы будем счастливы разделить с вами один из самых важных и счастливых дней нашей жизни. Приглашаем вас стать частью нашей свадебной истории и провести этот незабываемый день вместе с нами!</p>
+        <!-- ЗАМЕНИТЕ: имена молодожёнов -->
+        <p class="signature">С любовью, <span>Александр и София</span></p>
+      </div>
+    </section>
+
+    <section class="section date-section reveal" id="date" aria-labelledby="dateTitle">
+      <div class="date-section__wash" aria-hidden="true"></div>
+      <div class="container">
+        <div class="section-heading">
+          <p class="eyebrow">Сохраните эту дату</p>
+          <h2 class="section-title" id="dateTitle">20 сентября 2026</h2>
+        </div>
+
+        <div class="date-layout">
+          <article class="calendar-card" aria-label="Календарь на сентябрь 2026 года">
+            <!-- ЗАМЕНИТЕ: месяц, год и расположение выделенного дня -->
+            <header class="calendar-card__header"><span>Сентябрь</span><strong>2026</strong></header>
+            <div class="calendar" aria-hidden="true">
+              <span class="calendar__weekday">Пн</span><span class="calendar__weekday">Вт</span><span class="calendar__weekday">Ср</span><span class="calendar__weekday">Чт</span><span class="calendar__weekday">Пт</span><span class="calendar__weekday">Сб</span><span class="calendar__weekday">Вс</span>
+              <span></span><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span>
+              <span>7</span><span>8</span><span>9</span><span>10</span><span>11</span><span>12</span><span>13</span>
+              <span>14</span><span>15</span><span>16</span><span>17</span><span>18</span><span>19</span><span class="calendar__special">20<i>♥</i></span>
+              <span>21</span><span>22</span><span>23</span><span>24</span><span>25</span><span>26</span><span>27</span>
+              <span>28</span><span>29</span><span>30</span>
+            </div>
+          </article>
+
+          <div class="countdown-wrap">
+            <p class="countdown-wrap__label">До нашего счастливого дня осталось</p>
+            <div class="countdown" id="countdown" role="timer" aria-live="polite">
+              <div class="countdown__item"><strong id="days">00</strong><span>дней</span></div>
+              <div class="countdown__item"><strong id="hours">00</strong><span>часов</span></div>
+              <div class="countdown__item"><strong id="minutes">00</strong><span>минут</span></div>
+              <div class="countdown__item"><strong id="seconds">00</strong><span>секунд</span></div>
+            </div>
+            <p class="countdown__complete" id="countdownComplete" hidden>Наш счастливый день наступил!</p>
+            <p class="date-note">Воскресенье · начало в 17:00</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section venue reveal" id="venue" aria-labelledby="venueTitle">
+      <div class="container">
+        <div class="section-heading"><p class="eyebrow">Будем ждать вас</p><h2 class="section-title" id="venueTitle">Место проведения</h2></div>
+        <div class="venue-card">
+          <div class="venue-card__image">
+            <!-- ЗАМЕНИТЕ: файл images/venue.jpg на фотографию места проведения -->
+            <img src="images/venue.jpg" alt="Элегантно украшенная площадка для свадебного торжества" loading="lazy">
+            <span class="venue-card__number" aria-hidden="true">20</span>
+          </div>
+          <div class="venue-card__content">
+            <p class="eyebrow">Торжество состоится в</p>
+            <!-- ЗАМЕНИТЕ: название ресторана -->
+            <h3>Ресторан «Белый сад»</h3>
+            <dl class="venue-details">
+              <div>
+                <dt><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M12 21s7-5.5 7-12a7 7 0 1 0-14 0c0 6.5 7 12 7 12Z"/><circle cx="12" cy="9" r="2.5"/></svg><span>Адрес</span></dt>
+                <!-- ЗАМЕНИТЕ: полный адрес -->
+                <dd>г. Канибадам, ул. Садовая, 20</dd>
+              </div>
+              <div>
+                <dt><svg aria-hidden="true" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><span>Начало</span></dt>
+                <!-- ЗАМЕНИТЕ: дату и время -->
+                <dd>20 сентября 2026 · 17:00</dd>
+              </div>
+            </dl>
+            <!-- ЗАМЕНИТЕ: ссылку на карту -->
+            <a class="button button--gold" href="https://maps.google.com/?q=40.2941,70.4312" target="_blank" rel="noopener noreferrer">Открыть на карте<svg aria-hidden="true" viewBox="0 0 24 24"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
+          </div>
+        </div>
+        <div class="map-wrap">
+          <!-- ЗАМЕНИТЕ: src на ссылку для встраивания карты. Если iframe не нужен, удалите блок .map-wrap -->
+          <iframe title="Карта места проведения свадьбы" src="https://www.google.com/maps?q=40.2941,70.4312&z=15&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
+        </div>
+      </div>
+    </section>
+
+    <section class="section gallery-section reveal" id="gallery" aria-labelledby="galleryTitle">
+      <div class="container">
+        <div class="section-heading"><p class="eyebrow">Наша история</p><h2 class="section-title" id="galleryTitle">Счастливые моменты</h2><p class="section-subtitle">Каждый день рядом — ещё одна глава нашей общей истории.</p></div>
+        <!-- ЗАМЕНИТЕ: файлы couple-1.jpg ... couple-6.jpg на фотографии молодожёнов -->
+        <div class="gallery" id="galleryGrid">
+          <button class="gallery__item gallery__item--tall" type="button" data-index="0" aria-label="Открыть фотографию 1"><img src="images/couple-1.jpg" alt="Молодожёны гуляют в саду" loading="lazy"></button>
+          <button class="gallery__item" type="button" data-index="1" aria-label="Открыть фотографию 2"><img src="images/couple-2.jpg" alt="Романтичный момент молодожёнов" loading="lazy"></button>
+          <button class="gallery__item gallery__item--wide" type="button" data-index="2" aria-label="Открыть фотографию 3"><img src="images/couple-3.jpg" alt="Прогулка молодожёнов на закате" loading="lazy"></button>
+          <button class="gallery__item" type="button" data-index="3" aria-label="Открыть фотографию 4"><img src="images/couple-4.jpg" alt="Нежный свадебный букет" loading="lazy"></button>
+          <button class="gallery__item gallery__item--tall" type="button" data-index="4" aria-label="Открыть фотографию 5"><img src="images/couple-5.jpg" alt="Молодожёны в праздничном образе" loading="lazy"></button>
+          <button class="gallery__item" type="button" data-index="5" aria-label="Открыть фотографию 6"><img src="images/couple-6.jpg" alt="Детали свадебного дня" loading="lazy"></button>
+        </div>
+      </div>
+    </section>
+
+    <section class="section rsvp reveal" id="rsvp" aria-labelledby="rsvpTitle">
+      <div class="rsvp__ornament rsvp__ornament--left" aria-hidden="true"></div><div class="rsvp__ornament rsvp__ornament--right" aria-hidden="true"></div>
+      <div class="container container--form">
+        <div class="section-heading"><p class="eyebrow">Пожалуйста, ответьте</p><h2 class="section-title" id="rsvpTitle">Подтверждение участия</h2><!-- ЗАМЕНИТЕ: срок подтверждения участия --><p class="section-subtitle">Будем благодарны за ответ до 1 сентября 2026 года.</p></div>
+        <form class="rsvp-form" id="rsvpForm" novalidate>
+          <div class="form-grid">
+            <div class="field">
+              <label for="guestName">Имя и фамилия <span aria-hidden="true">*</span></label>
+              <input id="guestName" name="guestName" type="text" autocomplete="name" placeholder="Например, Малика Саидова" required>
+              <small class="field__error" aria-live="polite"></small>
+            </div>
+            <div class="field">
+              <label for="guestPhone">Номер телефона <span aria-hidden="true">*</span></label>
+              <input id="guestPhone" name="guestPhone" type="tel" autocomplete="tel" inputmode="tel" placeholder="+992 00 000 0000" required>
+              <small class="field__error" aria-live="polite"></small>
+            </div>
+            <div class="field">
+              <label for="guestCount">Количество гостей <span aria-hidden="true">*</span></label>
+              <select id="guestCount" name="guestCount" required><option value="">Выберите</option><option value="1">1 гость</option><option value="2">2 гостя</option><option value="3">3 гостя</option><option value="4">4 гостя</option><option value="5">5 гостей</option></select>
+              <small class="field__error" aria-live="polite"></small>
+            </div>
+            <fieldset class="field field--full attendance-field">
+              <legend>Сможете ли вы присутствовать? <span aria-hidden="true">*</span></legend>
+              <div class="choice-row">
+                <label class="choice-card"><input type="radio" name="attendance" value="Да, обязательно буду" required><span><i aria-hidden="true">♥</i> Да, обязательно буду</span></label>
+                <label class="choice-card"><input type="radio" name="attendance" value="К сожалению, не смогу" required><span><i aria-hidden="true">×</i> К сожалению, не смогу</span></label>
+              </div>
+              <small class="field__error" aria-live="polite"></small>
+            </fieldset>
+            <fieldset class="field field--full drinks-field">
+              <legend>Предпочтения по напиткам</legend>
+              <div class="check-row">
+                <label><input type="checkbox" name="drinks" value="Безалкогольные"><span>Безалкогольные</span></label>
+                <label><input type="checkbox" name="drinks" value="Вино"><span>Вино</span></label>
+                <label><input type="checkbox" name="drinks" value="Шампанское"><span>Шампанское</span></label>
+                <label><input type="checkbox" name="drinks" value="Крепкие напитки"><span>Крепкие напитки</span></label>
+              </div>
+            </fieldset>
+            <div class="field field--full">
+              <label for="guestComment">Дополнительный комментарий</label>
+              <textarea id="guestComment" name="guestComment" rows="4" maxlength="300" placeholder="Пожелания, особенности питания или другая важная информация"></textarea>
+              <small class="field__hint"><span id="commentCount">0</span>/300</small>
+            </div>
+          </div>
+          <button class="button button--gold button--submit" type="submit">Отправить ответ<svg aria-hidden="true" viewBox="0 0 24 24"><path d="m4 4 16 8-16 8 3-8-3-8Zm3 8h13"/></svg></button>
+          <p class="form-note">После нажатия откроется WhatsApp с готовым сообщением.</p>
+        </form>
+      </div>
+    </section>
+
+    <section class="finale reveal" id="contacts" aria-labelledby="finalTitle">
+      <div class="finale__overlay"></div>
+      <div class="container finale__content">
+        <!-- ЗАМЕНИТЕ: первые буквы имён -->
+        <div class="monogram" aria-hidden="true"><span>А</span><i>&</i><span>С</span></div>
+        <p class="eyebrow">До скорой встречи</p>
+        <h2 id="finalTitle">Мы с нетерпением ждём встречи с вами!</h2>
+        <!-- ЗАМЕНИТЕ: имена, дату и телефон -->
+        <p class="finale__names">Александр & София</p><time datetime="2026-09-20">20 сентября 2026</time><a class="finale__phone" href="tel:+992000000000">+992 00 000 0000</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer"><p>Создано с любовью <span aria-hidden="true">♥</span></p></footer>
+
+  <button class="music-button" id="musicButton" type="button" aria-pressed="false" aria-label="Включить музыку" title="Включить музыку">
+    <svg class="music-button__play" aria-hidden="true" viewBox="0 0 24 24"><path d="M9 18V5l10-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="16" cy="16" r="3"/></svg>
+    <span class="music-button__waves" aria-hidden="true"><i></i><i></i><i></i></span>
+  </button>
+  <!-- ЗАМЕНИТЕ: music/wedding-music.mp3 на ваш музыкальный файл -->
+  <audio id="backgroundMusic" src="music/wedding-music.mp3" preload="none" loop></audio>
+  <button class="back-to-top" id="backToTop" type="button" aria-label="Вернуться наверх" title="Наверх"><svg aria-hidden="true" viewBox="0 0 24 24"><path d="m6 14 6-6 6 6"/></svg></button>
+
+  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Просмотр фотографии" aria-hidden="true">
+    <div class="lightbox__backdrop" data-close-lightbox></div>
+    <button class="lightbox__close" type="button" aria-label="Закрыть галерею" data-close-lightbox>×</button>
+    <button class="lightbox__arrow lightbox__arrow--prev" id="lightboxPrev" type="button" aria-label="Предыдущая фотография"><svg aria-hidden="true" viewBox="0 0 24 24"><path d="m15 18-6-6 6-6"/></svg></button>
+    <figure class="lightbox__figure"><img id="lightboxImage" src="" alt=""><figcaption id="lightboxCaption"></figcaption></figure>
+    <button class="lightbox__arrow lightbox__arrow--next" id="lightboxNext" type="button" aria-label="Следующая фотография"><svg aria-hidden="true" viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></svg></button>
+  </div>
+
+  <div class="toast" id="toast" role="status" aria-live="polite" aria-atomic="true"></div>
+  <script src="script.js"></script>
+</body>
+</html>
