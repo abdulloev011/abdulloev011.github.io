@@ -58,7 +58,7 @@
         <div class="hero__date" aria-label="20 сентября 2026 года">
           <span></span><time datetime="2026-09-20">20 · 09 · 2026</time><span></span>
         </div>
-        <a class="button button--light" href="#invitation">
+        <a class="button button--light" id="openInvitationButton" href="#invitation" aria-controls="invitation">
           Открыть приглашение
           <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M12 5v14m0 0 6-6m-6 6-6-6"/></svg>
         </a>
@@ -238,7 +238,7 @@
     <span class="music-button__waves" aria-hidden="true"><i></i><i></i><i></i></span>
   </button>
   <!-- ЗАМЕНИТЕ: music/wedding-music.mp3 на ваш музыкальный файл -->
-  <audio id="backgroundMusic" src="music/wedding-music.mp3" preload="none" loop></audio>
+  <audio id="backgroundMusic" src="music/wedding-music.mp3" preload="auto" loop playsinline></audio>
   <button class="back-to-top" id="backToTop" type="button" aria-label="Вернуться наверх" title="Наверх"><svg aria-hidden="true" viewBox="0 0 24 24"><path d="m6 14 6-6 6 6"/></svg></button>
 
   <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Просмотр фотографии" aria-hidden="true">

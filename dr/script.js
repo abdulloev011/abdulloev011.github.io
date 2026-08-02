@@ -342,6 +342,22 @@ musicButton?.addEventListener("click", async () => {
   }
 });
 
+const openInvitationButton = qs("#openInvitationButton");
+
+openInvitationButton?.addEventListener("click", async () => {
+  if (!backgroundMusic || !backgroundMusic.paused) return;
+
+  try {
+    backgroundMusic.volume = 0;
+    await backgroundMusic.play();
+    setMusicButtonState(true);
+    fadeAudio(0.55);
+  } catch (error) {
+    setMusicButtonState(false);
+    showToast("Добавьте музыкальный файл: music/wedding-music.mp3", 4500);
+  }
+});
+
 backgroundMusic?.addEventListener("error", () => {
   setMusicButtonState(false);
 });
