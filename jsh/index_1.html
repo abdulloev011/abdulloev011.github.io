@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
-  <title>Свадебное приглашение — Jamshed & Shukrona</title>
+  <title>Свадебное приглашение — Наимҷон и Мухбира</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Great+Vibes&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
@@ -495,9 +495,9 @@
     <section id="names">
       <div class="card reveal">
         <p class="eyebrow">Wedding day</p>
-        <div class="script">Jamshed <span class="amp">и</span> Shukrona</div>
+        <div class="script">Наимҷон <span class="amp">и</span> Мухбира</div>
         <div class="divider"></div>
-        <p class="text">26 июня 2026 года мы хотим разделить с вами один из самых красивых дней нашей жизни.</p>
+        <p class="text">16 августа 2026 года мы хотим разделить с вами один из самых красивых дней нашей жизни.</p>
       </div>
     </section>
 
@@ -513,17 +513,18 @@
     <section id="date">
       <div class="card reveal">
         <p class="eyebrow">Дата и время</p>
-        <h2>26 июня 2026</h2>
+        <h2>16 августа 2026</h2>
 
         <div class="calendar">
-          <div class="cal-head"><span>Июнь</span><span>2026</span></div>
+          <div class="cal-head"><span>Август</span><span>2026</span></div>
           <div class="cal-grid">
             <span class="day-name">Пн</span><span class="day-name">Вт</span><span class="day-name">Ср</span><span class="day-name">Чт</span><span class="day-name">Пт</span><span class="day-name">Сб</span><span class="day-name">Вс</span>
-            <span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span>
-            <span>8</span><span>9</span><span>10</span><span>11</span><span>12</span><span>13</span><span>14</span>
-            <span>15</span><span>16</span><span>17</span><span>18</span><span>19</span><span>20</span><span>21</span>
-            <span>22</span><span>23</span><span>24</span><span>25</span><span class="love-day">♥</span><span>27</span><span>28</span>
-            <span>29</span><span>30</span><span></span><span></span><span></span><span></span><span></span>
+            <span></span><span></span><span></span><span></span><span></span><span>1</span><span>2</span>
+            <span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span>
+            <span>10</span><span>11</span><span>12</span><span>13</span><span>14</span><span>15</span><span class="love-day">♥</span>
+            <span>17</span><span>18</span><span>19</span><span>20</span><span>21</span><span>22</span><span>23</span>
+            <span>24</span><span>25</span><span>26</span><span>27</span><span>28</span><span>29</span><span>30</span>
+            <span>31</span><span></span><span></span><span></span><span></span><span></span><span></span>
           </div>
         </div>
 
@@ -546,14 +547,14 @@
     <section id="place">
       <div class="card reveal">
         <p class="eyebrow">Место проведения</p>
-        <div class="place">«Шохон»</div>
+        <div class="place">«Муроду Максад»</div>
         <p class="text">Ресторан премиум-класса, уютный зал и изысканная атмосфера</p>
         <div class="divider"></div>
         <p class="text">Мы будем ждать вас в прекрасном месте, где начнётся наша семейная история. <br> 
-          <strong style="color:#b8875a;">улица Камоли Худжанди, 1А, Канибадам, Согдийская область </strong>
+          <strong style="color:#b8875a;">Канибадам, Согдийская область</strong>
         </p>
         <div class="btn-row">
-          <a class="btn" href="https://yandex.tj/maps/-/CPHkYP1G" target="_blank">Проложить маршрут</a>
+          <a class="btn" href="https://www.google.com/maps/search/?api=1&amp;query=Ресторан+Муроду+Максад+Канибадам" target="_blank">Проложить маршрут</a>
         </div>
       </div>
     </section>
@@ -579,7 +580,7 @@
       </div>
     </section>
 
-    <footer>С любовью, Jamshed & Shukrona · 26 июня 2026 · Ресторан «Шохон»</footer>
+    <footer>С любовью, Наимҷон и Мухбира · 16 августа 2026 · Ресторан «Муроду Максад»</footer>
   </main>
 
   <script>
@@ -674,7 +675,7 @@
     // --------------------------------------------------------------
     // ТАЙМЕР ДО СВАДЬБЫ
     // --------------------------------------------------------------
-    const weddingDate = new Date('2026-06-26T18:00:00+05:00');
+    const weddingDate = new Date('2026-08-16T18:00:00+05:00');
     function pad(n) { return String(Math.floor(n)).padStart(2, '0'); }
     
     function updateCountdown() {
@@ -758,7 +759,7 @@
     
     // ссылка на карты Google (уточним)
     const mapLink = document.querySelector('.btn[href*="maps.google"]');
-    if(mapLink) mapLink.setAttribute('href', 'https://maps.google.com/?q=Ресторан+Шохон+Душанбе,+Таджикистан');
+    if(mapLink) mapLink.setAttribute('href', 'https://www.google.com/maps/search/?api=1&query=Ресторан+Муроду+Максад+Канибадам');
     
     // дополнительное украшение — анимация сердечка
     const styleHeartAnim = document.createElement('style');
