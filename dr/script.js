@@ -3,12 +3,13 @@
 document.documentElement.classList.add("js");
 
 
-/* =========================================================
-   ОСНОВНАЯ НАСТРОЙКА
-   ========================================================= */
+/* =========================================
+   НАСТРОЙКИ СВАДЬБЫ
+========================================= */
 
 const WEDDING_CONFIG = {
-  weddingDate: "2026-08-31T18:00:00+05:00"
+  weddingDate:
+    "2026-08-31T18:00:00+05:00"
 };
 
 
@@ -18,9 +19,10 @@ const prefersReducedMotion =
   ).matches;
 
 
-/* =========================================================
+
+/* =========================================
    ВСПОМОГАТЕЛЬНЫЕ ФУНКЦИИ
-   ========================================================= */
+========================================= */
 
 const qs = (
   selector,
@@ -36,12 +38,17 @@ const qsa = (
 ];
 
 
+
+/* =========================================
+   TOAST
+========================================= */
+
 let toastTimer;
 
 
 function showToast(
   message,
-  duration = 3400
+  duration = 3500
 ) {
 
   const toast =
@@ -51,19 +58,23 @@ function showToast(
     return;
   }
 
-  window.clearTimeout(
+
+  clearTimeout(
     toastTimer
   );
 
+
   toast.textContent =
     message;
+
 
   toast.classList.add(
     "is-visible"
   );
 
+
   toastTimer =
-    window.setTimeout(
+    setTimeout(
       () => {
 
         toast.classList.remove(
@@ -73,21 +84,26 @@ function showToast(
       },
       duration
     );
+
 }
 
 
-/* =========================================================
-   HEADER И МОБИЛЬНОЕ МЕНЮ
-   ========================================================= */
+
+/* =========================================
+   HEADER
+========================================= */
 
 const header =
   qs("#siteHeader");
 
+
 const menuToggle =
   qs("#menuToggle");
 
+
 const navMenu =
   qs("#navMenu");
+
 
 const backToTop =
   qs("#backToTop");
@@ -95,22 +111,44 @@ const backToTop =
 
 function updateHeader() {
 
-  const isScrolled =
-    window.scrollY > 42;
+  const scrolled =
+    window.scrollY > 40;
+
 
   header?.classList.toggle(
     "is-scrolled",
-    isScrolled
+    scrolled
   );
+
 
   backToTop?.classList.toggle(
     "is-visible",
-    window.scrollY > 650
+    window.scrollY > 600
   );
+
 }
 
 
-function setMenu(open) {
+window.addEventListener(
+  "scroll",
+  updateHeader,
+  {
+    passive: true
+  }
+);
+
+
+updateHeader();
+
+
+
+/* =========================================
+   МОБИЛЬНОЕ МЕНЮ
+========================================= */
+
+function setMenu(
+  open
+) {
 
   if (
     !menuToggle ||
@@ -119,10 +157,12 @@ function setMenu(open) {
     return;
   }
 
+
   menuToggle.setAttribute(
     "aria-expanded",
     String(open)
   );
+
 
   menuToggle.setAttribute(
     "aria-label",
@@ -131,28 +171,18 @@ function setMenu(open) {
       : "Открыть меню"
   );
 
+
   navMenu.classList.toggle(
     "is-open",
     open
   );
+
 
   document.body.classList.toggle(
     "menu-open",
     open
   );
 
-  if (open) {
-
-    window.setTimeout(
-      () =>
-        qs(
-          "a",
-          navMenu
-        )?.focus(),
-      100
-    );
-
-  }
 }
 
 
@@ -160,73 +190,84 @@ menuToggle?.addEventListener(
   "click",
   () => {
 
-    const willOpen =
+    const open =
       menuToggle.getAttribute(
         "aria-expanded"
       ) !== "true";
 
+
     setMenu(
-      willOpen
+      open
     );
+
   }
 );
 
 
-/* =========================================================
+
+/* =========================================
    ПЛАВНАЯ ПРОКРУТКА
-   ========================================================= */
+========================================= */
 
-qsa('a[href^="#"]')
-  .forEach(
-    (link) => {
+qsa(
+  'a[href^="#"]'
+).forEach(
+  link => {
 
-      link.addEventListener(
-        "click",
-        (event) => {
+    link.addEventListener(
+      "click",
+      event => {
 
-          const targetId =
-            link.getAttribute(
-              "href"
-            );
+        const href =
+          link.getAttribute(
+            "href"
+          );
 
-          if (
-            !targetId ||
-            targetId === "#"
-          ) {
-            return;
-          }
 
-          const target =
-            qs(targetId);
-
-          if (!target) {
-            return;
-          }
-
-          event.preventDefault();
-
-          setMenu(false);
-
-          target.scrollIntoView({
-            behavior:
-              prefersReducedMotion
-                ? "auto"
-                : "smooth",
-
-            block:
-              "start"
-          });
-
+        if (
+          !href ||
+          href === "#"
+        ) {
+          return;
         }
-      );
-
-    }
-  );
 
 
-/* =========================================================
+        const target =
+          qs(href);
+
+
+        if (!target) {
+          return;
+        }
+
+
+        event.preventDefault();
+
+
+        setMenu(false);
+
+
+        target.scrollIntoView({
+          behavior:
+            prefersReducedMotion
+              ? "auto"
+              : "smooth",
+
+          block:
+            "start"
+        });
+
+      }
+    );
+
+  }
+);
+
+
+
+/* =========================================
    КНОПКА НАВЕРХ
-   ========================================================= */
+========================================= */
 
 backToTop?.addEventListener(
   "click",
@@ -245,21 +286,10 @@ backToTop?.addEventListener(
 );
 
 
-window.addEventListener(
-  "scroll",
-  updateHeader,
-  {
-    passive: true
-  }
-);
 
-
-updateHeader();
-
-
-/* =========================================================
-   АНИМАЦИЯ ПОЯВЛЕНИЯ БЛОКОВ
-   ========================================================= */
+/* =========================================
+   АНИМАЦИЯ СЕКЦИЙ
+========================================= */
 
 const revealItems =
   qsa(".reveal");
@@ -274,10 +304,13 @@ if (
 ) {
 
   revealItems.forEach(
-    (item) =>
+    item => {
+
       item.classList.add(
         "is-visible"
-      )
+      );
+
+    }
   );
 
 } else {
@@ -291,7 +324,7 @@ if (
       ) => {
 
         entries.forEach(
-          (entry) => {
+          entry => {
 
             if (
               !entry.isIntersecting
@@ -299,9 +332,11 @@ if (
               return;
             }
 
+
             entry.target.classList.add(
               "is-visible"
             );
+
 
             observer.unobserve(
               entry.target
@@ -313,31 +348,34 @@ if (
       },
 
       {
-        threshold:
-          0.12,
+        threshold: .1,
 
         rootMargin:
-          "0px 0px -45px"
+          "0px 0px -40px"
       }
 
     );
 
 
   revealItems.forEach(
-    (item) =>
+    item => {
+
       revealObserver.observe(
         item
-      )
+      );
+
+    }
   );
 
 }
 
 
-/* =========================================================
-   АКТИВНЫЙ ПУНКТ МЕНЮ
-   ========================================================= */
 
-const trackedSections =
+/* =========================================
+   АКТИВНЫЙ ПУНКТ МЕНЮ
+========================================= */
+
+const sections =
   qsa(
     "main section[id]"
   );
@@ -354,43 +392,41 @@ if (
   in window
 ) {
 
-  const sectionObserver =
+  const menuObserver =
     new IntersectionObserver(
 
-      (entries) => {
+      entries => {
 
-        const visibleEntry =
+        const visible =
           entries
             .filter(
-              (entry) =>
+              entry =>
                 entry.isIntersecting
             )
-
             .sort(
-              (
-                a,
-                b
-              ) =>
+              (a,b) =>
                 b.intersectionRatio -
                 a.intersectionRatio
             )[0];
 
 
-        if (!visibleEntry) {
+        if (!visible) {
           return;
         }
 
 
         navLinks.forEach(
-          (link) => {
+          link => {
 
             link.classList.toggle(
+
               "is-active",
 
               link.getAttribute(
                 "href"
               ) ===
-                `#${visibleEntry.target.id}`
+              `#${visible.target.id}`
+
             );
 
           }
@@ -400,11 +436,7 @@ if (
 
       {
         threshold:
-          [
-            0.2,
-            0.45,
-            0.7
-          ],
+          [.2,.5,.7],
 
         rootMargin:
           "-20% 0px -55%"
@@ -413,21 +445,25 @@ if (
     );
 
 
-  trackedSections.forEach(
-    (section) =>
-      sectionObserver.observe(
+  sections.forEach(
+    section => {
+
+      menuObserver.observe(
         section
-      )
+      );
+
+    }
   );
 
 }
 
 
-/* =========================================================
-   ОБРАТНЫЙ ОТСЧЁТ
-   ========================================================= */
 
-const weddingTimestamp =
+/* =========================================
+   ОБРАТНЫЙ ОТСЧЁТ
+========================================= */
+
+const weddingTime =
   new Date(
     WEDDING_CONFIG.weddingDate
   ).getTime();
@@ -441,24 +477,25 @@ const countdownComplete =
   qs("#countdownComplete");
 
 
-const countdownElements = {
-
-  days:
-    qs("#days"),
-
-  hours:
-    qs("#hours"),
-
-  minutes:
-    qs("#minutes"),
-
-  seconds:
-    qs("#seconds")
-
-};
+const daysElement =
+  qs("#days");
 
 
-function formatNumber(value) {
+const hoursElement =
+  qs("#hours");
+
+
+const minutesElement =
+  qs("#minutes");
+
+
+const secondsElement =
+  qs("#seconds");
+
+
+function formatNumber(
+  value
+) {
 
   return String(
     value
@@ -472,46 +509,32 @@ function formatNumber(value) {
 
 function updateCountdown() {
 
+  const distance =
+    weddingTime -
+    Date.now();
+
+
   if (
     Number.isNaN(
-      weddingTimestamp
+      weddingTime
     )
   ) {
 
-    countdown?.setAttribute(
-      "hidden",
-      ""
-    );
-
-    if (
-      countdownComplete
-    ) {
-
-      countdownComplete.hidden =
-        false;
-
-      countdownComplete.textContent =
-        "Укажите правильную дату свадьбы в script.js";
-
-    }
-
     return false;
   }
-
-
-  const distance =
-    weddingTimestamp -
-    Date.now();
 
 
   if (
     distance <= 0
   ) {
 
-    countdown?.setAttribute(
-      "hidden",
-      ""
-    );
+    if (countdown) {
+
+      countdown.hidden =
+        true;
+
+    }
+
 
     if (
       countdownComplete
@@ -521,6 +544,7 @@ function updateCountdown() {
         false;
 
     }
+
 
     return false;
   }
@@ -544,74 +568,93 @@ function updateCountdown() {
     60;
 
 
-  const values = {
+  const days =
+    Math.floor(
+      distance /
+      day
+    );
 
-    days:
-      Math.floor(
-        distance /
+
+  const hours =
+    Math.floor(
+      (
+        distance %
         day
-      ),
+      ) /
+      hour
+    );
 
-    hours:
-      Math.floor(
-        (
-          distance %
-          day
-        ) /
+
+  const minutes =
+    Math.floor(
+      (
+        distance %
         hour
-      ),
+      ) /
+      minute
+    );
 
-    minutes:
-      Math.floor(
-        (
-          distance %
-          hour
-        ) /
+
+  const seconds =
+    Math.floor(
+      (
+        distance %
         minute
-      ),
-
-    seconds:
-      Math.floor(
-        (
-          distance %
-          minute
-        ) /
-        1000
-      )
-
-  };
+      ) /
+      1000
+    );
 
 
-  Object.entries(
-    values
-  ).forEach(
-    (
-      [
-        unit,
-        value
-      ]
-    ) => {
+  if (
+    daysElement
+  ) {
 
-      if (
-        countdownElements[
-          unit
-        ]
-      ) {
+    daysElement.textContent =
+      formatNumber(
+        days
+      );
 
-        countdownElements[
-          unit
-        ].textContent =
-          formatNumber(
-            value
-          );
+  }
 
-      }
 
-    }
-  );
+  if (
+    hoursElement
+  ) {
+
+    hoursElement.textContent =
+      formatNumber(
+        hours
+      );
+
+  }
+
+
+  if (
+    minutesElement
+  ) {
+
+    minutesElement.textContent =
+      formatNumber(
+        minutes
+      );
+
+  }
+
+
+  if (
+    secondsElement
+  ) {
+
+    secondsElement.textContent =
+      formatNumber(
+        seconds
+      );
+
+  }
 
 
   return true;
+
 }
 
 
@@ -619,14 +662,14 @@ updateCountdown();
 
 
 const countdownTimer =
-  window.setInterval(
+  setInterval(
     () => {
 
       if (
         !updateCountdown()
       ) {
 
-        window.clearInterval(
+        clearInterval(
           countdownTimer
         );
 
@@ -638,9 +681,10 @@ const countdownTimer =
   );
 
 
-/* =========================================================
-   ГАЛЕРЕЯ / LIGHTBOX
-   ========================================================= */
+
+/* =========================================
+   ГАЛЕРЕЯ
+========================================= */
 
 const galleryButtons =
   qsa(
@@ -648,63 +692,16 @@ const galleryButtons =
   );
 
 
-const lightbox =
-  qs(
-    "#lightbox"
-  );
-
-
-const lightboxImage =
-  qs(
-    "#lightboxImage"
-  );
-
-
-const lightboxCaption =
-  qs(
-    "#lightboxCaption"
-  );
-
-
-const lightboxPrev =
-  qs(
-    "#lightboxPrev"
-  );
-
-
-const lightboxNext =
-  qs(
-    "#lightboxNext"
-  );
-
-
-const lightboxClose =
-  qs(
-    ".lightbox__close"
-  );
-
-
-let currentImageIndex =
-  0;
-
-
-let lightboxTrigger =
-  null;
-
-
-let touchStartX =
-  0;
-
-
 const galleryImages =
   galleryButtons.map(
-    (button) => {
+    button => {
 
       const image =
         qs(
           "img",
           button
         );
+
 
       return {
 
@@ -713,11 +710,12 @@ const galleryImages =
             "src"
           ) || "",
 
+
         alt:
           image?.getAttribute(
             "alt"
           ) ||
-          "Фотография молодожёнов"
+          "Фотография"
 
       };
 
@@ -725,20 +723,52 @@ const galleryImages =
   );
 
 
-function renderLightboxImage(
+
+/* =========================================
+   LIGHTBOX
+========================================= */
+
+const lightbox =
+  qs("#lightbox");
+
+
+const lightboxImage =
+  qs("#lightboxImage");
+
+
+const lightboxCaption =
+  qs("#lightboxCaption");
+
+
+const lightboxPrev =
+  qs("#lightboxPrev");
+
+
+const lightboxNext =
+  qs("#lightboxNext");
+
+
+let currentImage =
+  0;
+
+
+let touchStartX =
+  0;
+
+
+function showImage(
   index
 ) {
 
   if (
     !galleryImages.length ||
-    !lightboxImage ||
-    !lightboxCaption
+    !lightboxImage
   ) {
     return;
   }
 
 
-  currentImageIndex =
+  currentImage =
     (
       index +
       galleryImages.length
@@ -746,57 +776,39 @@ function renderLightboxImage(
     galleryImages.length;
 
 
-  const image =
+  const item =
     galleryImages[
-      currentImageIndex
+      currentImage
     ];
 
 
-  lightboxImage.classList.add(
-    "is-changing"
-  );
+  lightboxImage.src =
+    item.src;
 
 
-  window.setTimeout(
-    () => {
-
-      lightboxImage.src =
-        image.src;
-
-      lightboxImage.alt =
-        image.alt;
-
-      lightboxCaption.textContent =
-        `${
-          currentImageIndex + 1
-        } / ${
-          galleryImages.length
-        } — ${
-          image.alt
-        }`;
+  lightboxImage.alt =
+    item.alt;
 
 
-      lightboxImage.classList.remove(
-        "is-changing"
-      );
+  if (
+    lightboxCaption
+  ) {
 
-    },
+    lightboxCaption.textContent =
+      `${
+        currentImage + 1
+      } / ${
+        galleryImages.length
+      }`;
 
-    prefersReducedMotion
-      ? 0
-      : 90
-  );
+  }
 
 }
 
 
-/* =========================================================
-   ОТКРЫТИЕ LIGHTBOX
-   ========================================================= */
 
 function openLightbox(
-  index,
-  trigger
+  index
 ) {
 
   if (!lightbox) {
@@ -804,11 +816,7 @@ function openLightbox(
   }
 
 
-  lightboxTrigger =
-    trigger;
-
-
-  renderLightboxImage(
+  showImage(
     index
   );
 
@@ -828,19 +836,9 @@ function openLightbox(
     "lightbox-open"
   );
 
-
-  window.setTimeout(
-    () =>
-      lightboxClose?.focus(),
-    80
-  );
-
 }
 
 
-/* =========================================================
-   ЗАКРЫТИЕ LIGHTBOX
-   ========================================================= */
 
 function closeLightbox() {
 
@@ -874,15 +872,9 @@ function closeLightbox() {
 
   }
 
-
-  lightboxTrigger?.focus();
-
 }
 
 
-/* =========================================================
-   КЛИК ПО ФОТОГРАФИИ
-   ========================================================= */
 
 galleryButtons.forEach(
   (
@@ -892,61 +884,68 @@ galleryButtons.forEach(
 
     button.addEventListener(
       "click",
-      () =>
+      () => {
+
         openLightbox(
-          index,
-          button
-        )
+          index
+        );
+
+      }
     );
 
   }
 );
 
 
-/* ЗАКРЫТИЕ */
 
 qsa(
   "[data-close-lightbox]"
 ).forEach(
-  (element) =>
+  element => {
+
     element.addEventListener(
       "click",
       closeLightbox
-    )
+    );
+
+  }
 );
 
 
-/* ПРЕДЫДУЩЕЕ ФОТО */
 
 lightboxPrev?.addEventListener(
   "click",
-  () =>
-    renderLightboxImage(
-      currentImageIndex -
-      1
-    )
+  () => {
+
+    showImage(
+      currentImage - 1
+    );
+
+  }
 );
 
 
-/* СЛЕДУЮЩЕЕ ФОТО */
 
 lightboxNext?.addEventListener(
   "click",
-  () =>
-    renderLightboxImage(
-      currentImageIndex +
-      1
-    )
+  () => {
+
+    showImage(
+      currentImage + 1
+    );
+
+  }
 );
 
 
-/* =========================================================
-   SWIPE НА ТЕЛЕФОНЕ
-   ========================================================= */
+
+/* =========================================
+   SWIPE
+========================================= */
 
 lightbox?.addEventListener(
   "touchstart",
-  (event) => {
+  event => {
 
     touchStartX =
       event.changedTouches[
@@ -954,60 +953,71 @@ lightbox?.addEventListener(
       ].clientX;
 
   },
+
   {
-    passive:
-      true
+    passive: true
   }
 );
 
 
 lightbox?.addEventListener(
   "touchend",
-  (event) => {
+  event => {
 
-    const delta =
+    const currentX =
       event.changedTouches[
         0
-      ].clientX -
+      ].clientX;
+
+
+    const distance =
+      currentX -
       touchStartX;
 
 
     if (
-      Math.abs(delta) <
-      55
+      Math.abs(
+        distance
+      ) < 50
     ) {
       return;
     }
 
 
-    renderLightboxImage(
+    if (
+      distance < 0
+    ) {
 
-      currentImageIndex +
-      (
-        delta < 0
-          ? 1
-          : -1
-      )
+      showImage(
+        currentImage + 1
+      );
 
-    );
+    } else {
+
+      showImage(
+        currentImage - 1
+      );
+
+    }
 
   },
+
   {
-    passive:
-      true
+    passive: true
   }
 );
 
 
-/* =========================================================
+
+/* =========================================
    КЛАВИАТУРА
-   ========================================================= */
+========================================= */
 
 document.addEventListener(
   "keydown",
-  (event) => {
+  event => {
 
-    const lightboxIsOpen =
+    const isOpen =
       lightbox?.classList.contains(
         "is-open"
       );
@@ -1019,7 +1029,7 @@ document.addEventListener(
     ) {
 
       if (
-        lightboxIsOpen
+        isOpen
       ) {
 
         closeLightbox();
@@ -1036,7 +1046,7 @@ document.addEventListener(
 
 
     if (
-      !lightboxIsOpen
+      !isOpen
     ) {
       return;
     }
@@ -1047,9 +1057,8 @@ document.addEventListener(
       "ArrowLeft"
     ) {
 
-      renderLightboxImage(
-        currentImageIndex -
-        1
+      showImage(
+        currentImage - 1
       );
 
     }
@@ -1060,61 +1069,9 @@ document.addEventListener(
       "ArrowRight"
     ) {
 
-      renderLightboxImage(
-        currentImageIndex +
-        1
+      showImage(
+        currentImage + 1
       );
-
-    }
-
-
-    if (
-      event.key ===
-      "Tab"
-    ) {
-
-      const focusable =
-        [
-          lightboxClose,
-          lightboxPrev,
-          lightboxNext
-        ].filter(
-          Boolean
-        );
-
-
-      const first =
-        focusable[0];
-
-
-      const last =
-        focusable[
-          focusable.length -
-          1
-        ];
-
-
-      if (
-        event.shiftKey &&
-        document.activeElement ===
-          first
-      ) {
-
-        event.preventDefault();
-
-        last.focus();
-
-      } else if (
-        !event.shiftKey &&
-        document.activeElement ===
-          last
-      ) {
-
-        event.preventDefault();
-
-        first.focus();
-
-      }
 
     }
 
@@ -1122,29 +1079,60 @@ document.addEventListener(
 );
 
 
-/* =========================================================
-   ФОНОВАЯ МУЗЫКА
-   ========================================================= */
+
+/* =========================================
+   МУЗЫКА
+========================================= */
 
 const musicButton =
-  qs(
-    "#musicButton"
-  );
+  qs("#musicButton");
 
 
 const backgroundMusic =
+  qs("#backgroundMusic");
+
+
+const invitationButton =
   qs(
-    "#backgroundMusic"
+    "#openInvitationButton"
   );
 
 
-let volumeTimer;
+let musicLoaded =
+  false;
 
 
-/* СОСТОЯНИЕ КНОПКИ */
+let fadeTimer;
 
-function setMusicButtonState(
-  isPlaying
+
+
+/*
+  Важная оптимизация:
+  MP3 не загружается до нажатия.
+*/
+
+function prepareMusic() {
+
+  if (
+    !backgroundMusic ||
+    musicLoaded
+  ) {
+    return;
+  }
+
+
+  backgroundMusic.load();
+
+
+  musicLoaded =
+    true;
+
+}
+
+
+
+function setMusicButton(
+  playing
 ) {
 
   if (
@@ -1156,39 +1144,23 @@ function setMusicButtonState(
 
   musicButton.classList.toggle(
     "is-playing",
-    isPlaying
-  );
-
-
-  musicButton.setAttribute(
-    "aria-pressed",
-    String(
-      isPlaying
-    )
+    playing
   );
 
 
   musicButton.setAttribute(
     "aria-label",
-
-    isPlaying
+    playing
       ? "Выключить музыку"
       : "Включить музыку"
   );
 
-
-  musicButton.title =
-    isPlaying
-      ? "Выключить музыку"
-      : "Включить музыку";
-
 }
 
 
-/* ПЛАВНОЕ ИЗМЕНЕНИЕ ГРОМКОСТИ */
 
-function fadeAudio(
-  targetVolume,
+function fadeMusic(
+  target,
   callback
 ) {
 
@@ -1199,63 +1171,67 @@ function fadeAudio(
   }
 
 
-  window.clearInterval(
-    volumeTimer
+  clearInterval(
+    fadeTimer
   );
 
 
   const step =
-    targetVolume >
+    target >
     backgroundMusic.volume
-      ? 0.05
-      : -0.05;
+      ? .05
+      : -.05;
 
 
-  volumeTimer =
-    window.setInterval(
+  fadeTimer =
+    setInterval(
       () => {
 
-        const nextVolume =
-          Math.min(
-            1,
+        let volume =
+          backgroundMusic.volume +
+          step;
 
-            Math.max(
-              0,
 
-              backgroundMusic.volume +
-              step
+        volume =
+          Math.max(
+            0,
+            Math.min(
+              1,
+              volume
             )
           );
 
 
         backgroundMusic.volume =
-          nextVolume;
+          volume;
 
 
-        const reachedTarget =
+        const complete =
           step > 0
-
-            ? nextVolume >=
-              targetVolume
-
-            : nextVolume <=
-              targetVolume;
+            ? volume >= target
+            : volume <= target;
 
 
         if (
-          reachedTarget
+          complete
         ) {
 
           backgroundMusic.volume =
-            targetVolume;
+            target;
 
 
-          window.clearInterval(
-            volumeTimer
+          clearInterval(
+            fadeTimer
           );
 
 
-          callback?.();
+          if (
+            callback
+          ) {
+
+            callback();
+
+          }
 
         }
 
@@ -1269,9 +1245,55 @@ function fadeAudio(
 }
 
 
-/* =========================================================
-   КНОПКА МУЗЫКИ
-   ========================================================= */
+
+async function playMusic() {
+
+  if (
+    !backgroundMusic
+  ) {
+    return;
+  }
+
+
+  prepareMusic();
+
+
+  try {
+
+    backgroundMusic.volume =
+      0;
+
+
+    await backgroundMusic.play();
+
+
+    setMusicButton(
+      true
+    );
+
+
+    fadeMusic(
+      .5
+    );
+
+  } catch (
+    error
+  ) {
+
+    setMusicButton(
+      false
+    );
+
+
+    showToast(
+      "Не удалось включить музыку"
+    );
+
+  }
+
+}
+
+
 
 musicButton?.addEventListener(
   "click",
@@ -1285,117 +1307,49 @@ musicButton?.addEventListener(
 
 
     if (
-      !backgroundMusic.paused
+      backgroundMusic.paused
     ) {
 
-      fadeAudio(
+      await playMusic();
+
+    } else {
+
+      fadeMusic(
         0,
         () => {
 
           backgroundMusic.pause();
 
-          setMusicButtonState(
+
+          setMusicButton(
             false
           );
 
         }
       );
 
-      return;
-    }
-
-
-    try {
-
-      backgroundMusic.volume =
-        0;
-
-
-      await backgroundMusic.play();
-
-
-      setMusicButtonState(
-        true
-      );
-
-
-      fadeAudio(
-        0.55
-      );
-
-    } catch (
-      error
-    ) {
-
-      setMusicButtonState(
-        false
-      );
-
-
-      showToast(
-        "Добавьте музыкальный файл: music/wedding-music.mp3",
-        4500
-      );
-
     }
 
   }
 );
 
 
-/* =========================================================
-   МУЗЫКА ПРИ ОТКРЫТИИ ПРИГЛАШЕНИЯ
-   ========================================================= */
 
-const openInvitationButton =
-  qs(
-    "#openInvitationButton"
-  );
+/*
+  Музыка начинается только
+  после нажатия "Открыть приглашение".
+*/
 
-
-openInvitationButton?.addEventListener(
+invitationButton?.addEventListener(
   "click",
   async () => {
 
     if (
-      !backgroundMusic ||
-      !backgroundMusic.paused
-    ) {
-      return;
-    }
-
-
-    try {
-
-      backgroundMusic.volume =
-        0;
-
-
-      await backgroundMusic.play();
-
-
-      setMusicButtonState(
-        true
-      );
-
-
-      fadeAudio(
-        0.55
-      );
-
-    } catch (
-      error
+      backgroundMusic &&
+      backgroundMusic.paused
     ) {
 
-      setMusicButtonState(
-        false
-      );
-
-
-      showToast(
-        "Добавьте музыкальный файл: music/wedding-music.mp3",
-        4500
-      );
+      await playMusic();
 
     }
 
@@ -1403,13 +1357,12 @@ openInvitationButton?.addEventListener(
 );
 
 
-/* ЕСЛИ МУЗЫКАЛЬНЫЙ ФАЙЛ НЕ НАЙДЕН */
 
 backgroundMusic?.addEventListener(
   "error",
   () => {
 
-    setMusicButtonState(
+    setMusicButton(
       false
     );
 
@@ -1417,9 +1370,10 @@ backgroundMusic?.addEventListener(
 );
 
 
-/* =========================================================
-   МОБИЛЬНОЕ МЕНЮ
-   ========================================================= */
+
+/* =========================================
+   RESIZE
+========================================= */
 
 window.addEventListener(
   "resize",

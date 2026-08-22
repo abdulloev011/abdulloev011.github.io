@@ -1,396 +1,699 @@
 <!DOCTYPE html>
 <html lang="ru">
+
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#f7f1e8">
-  <meta name="description" content="Свадебное приглашение Донёра и Рухшоны — 31 августа 2026 года.">
 
-  <meta property="og:type" content="website">
-  <meta property="og:locale" content="ru_RU">
-  <meta property="og:title" content="Донёр & Рухшона — свадебное приглашение">
-  <meta property="og:description" content="Будем счастливы разделить этот день вместе с вами.">
-  <meta property="og:image" content="images/hero.jpg">
-  <meta name="twitter:card" content="summary_large_image">
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
 
-  <title>Донёр & Рухшона — свадебное приглашение</title>
+  <meta
+    name="theme-color"
+    content="#f7f1e8"
+  >
 
-  <link rel="icon" href="favicon.svg" type="image/svg+xml">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Great+Vibes&family=Manrope:wght@300;400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
+  <meta
+    name="description"
+    content="Свадебное приглашение Донёра и Рухшоны — 31 августа 2026 года."
+  >
+
+  <meta
+    property="og:type"
+    content="website"
+  >
+
+  <meta
+    property="og:locale"
+    content="ru_RU"
+  >
+
+  <meta
+    property="og:title"
+    content="Донёр & Рухшона — свадебное приглашение"
+  >
+
+  <meta
+    property="og:description"
+    content="Будем счастливы разделить этот особенный день вместе с вами."
+  >
+
+  <meta
+    property="og:image"
+    content="images/hero.webp"
+  >
+
+  <meta
+    name="twitter:card"
+    content="summary_large_image"
+  >
+
+  <title>
+    Донёр & Рухшона — свадебное приглашение
+  </title>
+
+  <!-- Быстрая загрузка главного фото -->
+  <link
+    rel="preload"
+    as="image"
+    href="images/hero.webp"
+    fetchpriority="high"
+  >
+
+  <!-- Google Fonts -->
+  <link
+    rel="preconnect"
+    href="https://fonts.googleapis.com"
+  >
+
+  <link
+    rel="preconnect"
+    href="https://fonts.gstatic.com"
+    crossorigin
+  >
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500&family=Great+Vibes&family=Manrope:wght@400;500;600&display=swap"
+    rel="stylesheet"
+  >
+
+  <link
+    rel="stylesheet"
+    href="style.css"
+  >
 </head>
+
 
 <body>
 
-  <a class="skip-link" href="#invitation">Перейти к приглашению</a>
+<header
+  class="site-header"
+  id="siteHeader"
+>
 
-  <header class="site-header" id="siteHeader">
-    <nav class="nav container" aria-label="Главная навигация">
+  <nav
+    class="nav container"
+    aria-label="Главное меню"
+  >
 
-      <a class="nav__brand" href="#home" aria-label="На главный экран">
-        Д<span>&</span>Р
-      </a>
-
-      <button
-        class="nav__toggle"
-        id="menuToggle"
-        type="button"
-        aria-expanded="false"
-        aria-controls="navMenu"
-        aria-label="Открыть меню"
-      >
-        <span></span>
-        <span></span>
-        <span></span>
-      </button>
-
-      <ul class="nav__menu" id="navMenu">
-        <li><a href="#invitation">Приглашение</a></li>
-        <li><a href="#date">Дата</a></li>
-        <li><a href="#venue">Место</a></li>
-        <li><a href="#gallery">Галерея</a></li>
-      </ul>
-
-    </nav>
-  </header>
+    <a
+      class="nav__brand"
+      href="#home"
+    >
+      Д
+      <span>&</span>
+      Р
+    </a>
 
 
-  <main>
+    <button
+      class="nav__toggle"
+      id="menuToggle"
+      type="button"
+      aria-expanded="false"
+      aria-label="Открыть меню"
+    >
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
 
-    <!-- ГЛАВНЫЙ ЭКРАН -->
 
-    <section class="hero" id="home" aria-labelledby="heroTitle">
+    <ul
+      class="nav__menu"
+      id="navMenu"
+    >
 
-      <div class="hero__overlay"></div>
-
-      <div class="hero__content container">
-
-        <p class="hero__eyebrow">
-          Мы женимся!
-        </p>
-
-        <h1 class="hero__names" id="heroTitle">
-          <span>Донёр</span>
-          <b aria-hidden="true">&</b>
-          <span>Рухшона</span>
-        </h1>
-
-        <div class="hero__date" aria-label="31 августа 2026 года">
-          <span></span>
-
-          <time datetime="2026-08-31">
-            31 · 08 · 2026
-          </time>
-
-          <span></span>
-        </div>
-
-        <a
-          class="button button--light"
-          id="openInvitationButton"
-          href="#invitation"
-          aria-controls="invitation"
-        >
-          Открыть приглашение
-
-          <svg aria-hidden="true" viewBox="0 0 24 24">
-            <path d="M12 5v14m0 0 6-6m-6 6-6-6"/>
-          </svg>
+      <li>
+        <a href="#invitation">
+          Приглашение
         </a>
+      </li>
 
-      </div>
+      <li>
+        <a href="#date">
+          Дата
+        </a>
+      </li>
 
-      <a
-        class="hero__scroll"
-        href="#invitation"
-        aria-label="Прокрутить к приглашению"
+      <li>
+        <a href="#venue">
+          Место
+        </a>
+      </li>
+
+      <li>
+        <a href="#gallery">
+          Галерея
+        </a>
+      </li>
+
+    </ul>
+
+  </nav>
+
+</header>
+
+
+<main>
+
+
+<!-- =========================================
+     ГЛАВНЫЙ ЭКРАН
+========================================= -->
+
+<section
+  class="hero"
+  id="home"
+>
+
+  <div
+    class="hero__overlay"
+  ></div>
+
+
+  <div
+    class="hero__content container"
+  >
+
+    <p
+      class="hero__eyebrow"
+    >
+      Мы женимся!
+    </p>
+
+
+    <h1
+      class="hero__names"
+    >
+
+      <span>
+        Донёр
+      </span>
+
+      <b>
+        &
+      </b>
+
+      <span>
+        Рухшона
+      </span>
+
+    </h1>
+
+
+    <div
+      class="hero__date"
+    >
+
+      <span></span>
+
+      <time
+        datetime="2026-08-31"
       >
-        <span></span>
-      </a>
+        31 · 08 · 2026
+      </time>
 
-    </section>
+      <span></span>
+
+    </div>
 
 
-    <!-- ПРИГЛАШЕНИЕ -->
-
-    <section
-      class="section invitation reveal"
-      id="invitation"
-      aria-labelledby="invitationTitle"
+    <a
+      class="button button--light"
+      id="openInvitationButton"
+      href="#invitation"
     >
 
-      <div class="container container--narrow">
+      Открыть приглашение
 
-        <div class="botanical botanical--top" aria-hidden="true">
-          <svg viewBox="0 0 180 70">
-            <path d="M10 58C45 58 54 19 88 20c31 1 38 31 82 21"/>
-            <path d="M45 47c-14-5-18-15-16-25 12 2 20 11 16 25Zm43-27c-3-12 3-20 13-26 6 11 2 22-13 26Zm43 25c6-14 17-20 29-17-2 13-12 21-29 17Z"/>
-          </svg>
-        </div>
+      <svg
+        viewBox="0 0 24 24"
+        aria-hidden="true"
+      >
+        <path
+          d="M12 5v14m0 0 6-6m-6 6-6-6"
+        />
+      </svg>
 
-        <p class="eyebrow">
-          С особой радостью
-        </p>
+    </a>
 
-        <h2 class="section-title" id="invitationTitle">
-          Дорогие родные и друзья!
-        </h2>
+  </div>
 
-        <div class="gold-line" aria-hidden="true">
+
+  <a
+    class="hero__scroll"
+    href="#invitation"
+    aria-label="Прокрутить вниз"
+  >
+    <span></span>
+  </a>
+
+</section>
+
+
+
+<!-- =========================================
+     ПРИГЛАШЕНИЕ
+========================================= -->
+
+<section
+  class="section invitation reveal"
+  id="invitation"
+>
+
+  <div
+    class="container container--narrow"
+  >
+
+    <div
+      class="botanical"
+      aria-hidden="true"
+    >
+
+      <svg
+        viewBox="0 0 180 70"
+      >
+
+        <path
+          d="M10 58C45 58 54 19 88 20c31 1 38 31 82 21"
+        />
+
+        <path
+          d="M45 47c-14-5-18-15-16-25 12 2 20 11 16 25Zm43-27c-3-12 3-20 13-26 6 11 2 22-13 26Zm43 25c6-14 17-20 29-17-2 13-12 21-29 17Z"
+        />
+
+      </svg>
+
+    </div>
+
+
+    <p
+      class="eyebrow"
+    >
+      С особой радостью
+    </p>
+
+
+    <h2
+      class="section-title"
+    >
+      Дорогие родные и друзья!
+    </h2>
+
+
+    <div
+      class="gold-line"
+    >
+      <span></span>
+    </div>
+
+
+    <p
+      class="invitation__text"
+    >
+      Мы будем счастливы разделить с вами
+      один из самых важных и счастливых дней
+      нашей жизни.
+
+      Приглашаем вас стать частью нашей
+      свадебной истории и провести этот
+      незабываемый день вместе с нами!
+    </p>
+
+
+    <p
+      class="signature"
+    >
+
+      С любовью,
+
+      <span>
+        Донёр и Рухшона
+      </span>
+
+    </p>
+
+  </div>
+
+</section>
+
+
+
+<!-- =========================================
+     ДАТА
+========================================= -->
+
+<section
+  class="section date-section reveal"
+  id="date"
+>
+
+  <div
+    class="date-section__wash"
+  ></div>
+
+
+  <div
+    class="container"
+  >
+
+    <div
+      class="section-heading"
+    >
+
+      <p
+        class="eyebrow"
+      >
+        Сохраните эту дату
+      </p>
+
+      <h2
+        class="section-title"
+      >
+        31 августа 2026
+      </h2>
+
+    </div>
+
+
+    <div
+      class="date-layout"
+    >
+
+
+      <!-- КАЛЕНДАРЬ -->
+
+      <article
+        class="calendar-card"
+      >
+
+        <header
+          class="calendar-card__header"
+        >
+
+          <span>
+            Август
+          </span>
+
+          <strong>
+            2026
+          </strong>
+
+        </header>
+
+
+        <div
+          class="calendar"
+        >
+
+          <span class="calendar__weekday">Пн</span>
+          <span class="calendar__weekday">Вт</span>
+          <span class="calendar__weekday">Ср</span>
+          <span class="calendar__weekday">Чт</span>
+          <span class="calendar__weekday">Пт</span>
+          <span class="calendar__weekday">Сб</span>
+          <span class="calendar__weekday">Вс</span>
+
           <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+
+          <span>1</span>
+          <span>2</span>
+
+          <span>3</span>
+          <span>4</span>
+          <span>5</span>
+          <span>6</span>
+          <span>7</span>
+          <span>8</span>
+          <span>9</span>
+
+          <span>10</span>
+          <span>11</span>
+          <span>12</span>
+          <span>13</span>
+          <span>14</span>
+          <span>15</span>
+          <span>16</span>
+
+          <span>17</span>
+          <span>18</span>
+          <span>19</span>
+          <span>20</span>
+          <span>21</span>
+          <span>22</span>
+          <span>23</span>
+
+          <span>24</span>
+          <span>25</span>
+          <span>26</span>
+          <span>27</span>
+          <span>28</span>
+          <span>29</span>
+          <span>30</span>
+
+          <span
+            class="calendar__special"
+          >
+            31
+            <i>♥</i>
+          </span>
+
         </div>
 
-        <p class="invitation__text">
-          Мы будем счастливы разделить с вами один из самых важных
-          и счастливых дней нашей жизни. Приглашаем вас стать частью
-          нашей свадебной истории и провести этот незабываемый день
-          вместе с нами!
+      </article>
+
+
+
+      <!-- ОБРАТНЫЙ ОТСЧЁТ -->
+
+      <div
+        class="countdown-wrap"
+      >
+
+        <p
+          class="countdown-wrap__label"
+        >
+          До нашего счастливого дня осталось
         </p>
 
-        <p class="signature">
-          С любовью,
-          <span>Донёр и Рухшона</span>
-        </p>
 
-      </div>
+        <div
+          class="countdown"
+          id="countdown"
+        >
 
-    </section>
-
-
-    <!-- ДАТА -->
-
-    <section
-      class="section date-section reveal"
-      id="date"
-      aria-labelledby="dateTitle"
-    >
-
-      <div class="date-section__wash" aria-hidden="true"></div>
-
-      <div class="container">
-
-        <div class="section-heading">
-
-          <p class="eyebrow">
-            Сохраните эту дату
-          </p>
-
-          <h2 class="section-title" id="dateTitle">
-            31 августа 2026
-          </h2>
-
-        </div>
-
-
-        <div class="date-layout">
-
-          <article
-            class="calendar-card"
-            aria-label="Календарь на август 2026 года"
+          <div
+            class="countdown__item"
           >
 
-            <header class="calendar-card__header">
-              <span>Август</span>
-              <strong>2026</strong>
-            </header>
-
-            <div class="calendar" aria-hidden="true">
-
-              <span class="calendar__weekday">Пн</span>
-              <span class="calendar__weekday">Вт</span>
-              <span class="calendar__weekday">Ср</span>
-              <span class="calendar__weekday">Чт</span>
-              <span class="calendar__weekday">Пт</span>
-              <span class="calendar__weekday">Сб</span>
-              <span class="calendar__weekday">Вс</span>
-
-              <span></span>
-              <span></span>
-              <span></span>
-              <span></span>
-              <span></span>
-              <span>1</span>
-              <span>2</span>
-
-              <span>3</span>
-              <span>4</span>
-              <span>5</span>
-              <span>6</span>
-              <span>7</span>
-              <span>8</span>
-              <span>9</span>
-
-              <span>10</span>
-              <span>11</span>
-              <span>12</span>
-              <span>13</span>
-              <span>14</span>
-              <span>15</span>
-              <span>16</span>
-
-              <span>17</span>
-              <span>18</span>
-              <span>19</span>
-              <span>20</span>
-              <span>21</span>
-              <span>22</span>
-              <span>23</span>
-
-              <span>24</span>
-              <span>25</span>
-              <span>26</span>
-              <span>27</span>
-              <span>28</span>
-              <span>29</span>
-              <span>30</span>
-
-              <span class="calendar__special">
-                31
-                <i>♥</i>
-              </span>
-
-            </div>
-
-          </article>
-
-
-          <div class="countdown-wrap">
-
-            <p class="countdown-wrap__label">
-              До нашего счастливого дня осталось
-            </p>
-
-            <div
-              class="countdown"
-              id="countdown"
-              role="timer"
-              aria-live="polite"
+            <strong
+              id="days"
             >
+              00
+            </strong>
 
-              <div class="countdown__item">
-                <strong id="days">00</strong>
-                <span>дней</span>
-              </div>
-
-              <div class="countdown__item">
-                <strong id="hours">00</strong>
-                <span>часов</span>
-              </div>
-
-              <div class="countdown__item">
-                <strong id="minutes">00</strong>
-                <span>минут</span>
-              </div>
-
-              <div class="countdown__item">
-                <strong id="seconds">00</strong>
-                <span>секунд</span>
-              </div>
-
-            </div>
-
-            <p
-              class="countdown__complete"
-              id="countdownComplete"
-              hidden
-            >
-              Наш счастливый день наступил!
-            </p>
-
-            <p class="date-note">
-              Понедельник · начало в 18:00
-            </p>
-
-          </div>
-
-        </div>
-
-      </div>
-
-    </section>
-
-
-    <!-- МЕСТО ПРОВЕДЕНИЯ -->
-
-    <section
-      class="section venue reveal"
-      id="venue"
-      aria-labelledby="venueTitle"
-    >
-
-      <div class="container">
-
-        <div class="section-heading">
-
-          <p class="eyebrow">
-            Будем ждать вас
-          </p>
-
-          <h2 class="section-title" id="venueTitle">
-            Место проведения
-          </h2>
-
-        </div>
-
-
-        <div class="venue-card">
-
-          <div class="venue-card__image">
-
-            <img
-              src="images/venue.jpg"
-              alt="Элегантно украшенная площадка для свадебного торжества"
-              loading="lazy"
-            >
-
-            <span
-              class="venue-card__number"
-              aria-hidden="true"
-            >
-              31
+            <span>
+              дней
             </span>
 
           </div>
 
 
-          <div class="venue-card__content">
+          <div
+            class="countdown__item"
+          >
 
-            <p class="eyebrow">
-              Торжество состоится в
-            </p>
+            <strong
+              id="hours"
+            >
+              00
+            </strong>
 
-            <h3>
-              Ресторан «Муроду Максад»
-            </h3>
+            <span>
+              часов
+            </span>
 
-            <p class="venue-card__message">
-              Будем счастливы разделить этот особенный вечер вместе с вами.
-            </p>
+          </div>
 
-            <dl class="venue-details">
 
-              <div>
+          <div
+            class="countdown__item"
+          >
 
-                <dt>
+            <strong
+              id="minutes"
+            >
+              00
+            </strong>
 
-                  <svg aria-hidden="true" viewBox="0 0 24 24">
-                    <circle cx="12" cy="12" r="9"/>
-                    <path d="M12 7v5l3 2"/>
-                  </svg>
+            <span>
+              минут
+            </span>
 
-                  <span>Начало</span>
+          </div>
 
-                </dt>
 
-                <dd>
-                  31 августа 2026 · 18:00
-                </dd>
+          <div
+            class="countdown__item"
+          >
 
-              </div>
+            <strong
+              id="seconds"
+            >
+              00
+            </strong>
 
-            </dl>
+            <span>
+              секунд
+            </span>
+
+          </div>
+
+        </div>
+
+
+        <p
+          class="countdown__complete"
+          id="countdownComplete"
+          hidden
+        >
+          Наш счастливый день наступил!
+        </p>
+
+
+        <p
+          class="date-note"
+        >
+          Понедельник · начало в 18:00
+        </p>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+
+<!-- =========================================
+     МЕСТО
+========================================= -->
+
+<section
+  class="section venue reveal"
+  id="venue"
+>
+
+  <div
+    class="container"
+  >
+
+    <div
+      class="section-heading"
+    >
+
+      <p
+        class="eyebrow"
+      >
+        Будем ждать вас
+      </p>
+
+      <h2
+        class="section-title"
+      >
+        Место проведения
+      </h2>
+
+    </div>
+
+
+    <div
+      class="venue-card"
+    >
+
+
+      <div
+        class="venue-card__image"
+      >
+
+        <img
+          src="images/venue.webp"
+          alt="Ресторан Муроду Максад"
+          loading="lazy"
+          decoding="async"
+          width="1200"
+          height="800"
+        >
+
+        <span
+          class="venue-card__number"
+        >
+          31
+        </span>
+
+      </div>
+
+
+      <div
+        class="venue-card__content"
+      >
+
+        <p
+          class="eyebrow"
+        >
+          Торжество состоится в
+        </p>
+
+
+        <h3>
+          Ресторан «Муроду Максад»
+        </h3>
+
+
+        <p
+          class="venue-card__message"
+        >
+          Будем счастливы разделить
+          этот особенный вечер вместе с вами.
+        </p>
+
+
+        <div
+          class="venue-time"
+        >
+
+          <svg
+            viewBox="0 0 24 24"
+          >
+            <circle
+              cx="12"
+              cy="12"
+              r="9"
+            />
+
+            <path
+              d="M12 7v5l3 2"
+            />
+          </svg>
+
+
+          <div>
+
+            <span>
+              Начало
+            </span>
+
+            <strong>
+              31 августа 2026 · 18:00
+            </strong>
 
           </div>
 
@@ -398,286 +701,444 @@
 
       </div>
 
-    </section>
-
-
-    <!-- ГАЛЕРЕЯ -->
-
-    <section
-      class="section gallery-section reveal"
-      id="gallery"
-      aria-labelledby="galleryTitle"
-    >
-
-      <div class="container">
-
-        <div class="section-heading">
-
-          <p class="eyebrow">
-            Наша история
-          </p>
-
-          <h2 class="section-title" id="galleryTitle">
-            Счастливые моменты
-          </h2>
-
-          <p class="section-subtitle">
-            Каждый день рядом — ещё одна глава нашей общей истории.
-          </p>
-
-        </div>
-
-
-        <div class="gallery" id="galleryGrid">
-
-
-          <button
-            class="gallery__item"
-            type="button"
-            data-index="1"
-            aria-label="Открыть фотографию 2"
-          >
-            <img
-              src="images/couple-2.jpg"
-              alt="Романтичный момент молодожёнов"
-              loading="lazy"
-            >
-          </button>
-
-
-          <button
-            class="gallery__item gallery__item--wide"
-            type="button"
-            data-index="2"
-            aria-label="Открыть фотографию 3"
-          >
-            <img
-              src="images/couple-3.jpg"
-              alt="Прогулка молодожёнов на закате"
-              loading="lazy"
-            >
-          </button>
-
-
-
-
-          <button
-            class="gallery__item gallery__item--tall"
-            type="button"
-            data-index="4"
-            aria-label="Открыть фотографию 5"
-          >
-            <img
-              src="images/hero.jpg"
-              alt="Молодожёны в праздничном образе"
-              loading="lazy"
-            >
-          </button>
-
-
-          <button
-            class="gallery__item"
-            type="button"
-            data-index="5"
-            aria-label="Открыть фотографию 6"
-          >
-            <img
-              src="images/couple-6.jpg"
-              alt="Детали свадебного дня"
-              loading="lazy"
-            >
-          </button>
-
-        </div>
-
-      </div>
-
-    </section>
-
-
-    <!-- ФИНАЛЬНЫЙ ЭКРАН -->
-
-    <section
-      class="finale reveal"
-      id="contacts"
-      aria-labelledby="finalTitle"
-    >
-
-      <div class="finale__overlay"></div>
-
-      <div class="container finale__content">
-
-        <div class="monogram" aria-hidden="true">
-          <span>Д</span>
-          <i>&</i>
-          <span>Р</span>
-        </div>
-
-        <p class="eyebrow">
-          До скорой встречи
-        </p>
-
-        <h2 id="finalTitle">
-          Мы с нетерпением ждём встречи с вами!
-        </h2>
-
-        <p class="finale__names">
-          Донёр & Рухшона
-        </p>
-
-        <time datetime="2026-08-31T18:00:00+05:00">
-          31 августа 2026 · 18:00
-        </time>
-
-      </div>
-
-    </section>
-
-  </main>
-
-
-  <footer class="footer">
-    <p>
-      Создано с любовью
-      <span aria-hidden="true">♥</span>
-    </p>
-  </footer>
-
-
-  <!-- МУЗЫКА -->
-
-  <button
-    class="music-button"
-    id="musicButton"
-    type="button"
-    aria-pressed="false"
-    aria-label="Включить музыку"
-    title="Включить музыку"
-  >
-
-    <svg
-      class="music-button__play"
-      aria-hidden="true"
-      viewBox="0 0 24 24"
-    >
-      <path d="M9 18V5l10-2v13"/>
-      <circle cx="6" cy="18" r="3"/>
-      <circle cx="16" cy="16" r="3"/>
-    </svg>
-
-    <span
-      class="music-button__waves"
-      aria-hidden="true"
-    >
-      <i></i>
-      <i></i>
-      <i></i>
-    </span>
-
-  </button>
-
-
-  <audio
-    id="backgroundMusic"
-    src="music/wedding-music.mp3"
-    preload="auto"
-    loop
-    playsinline
-  ></audio>
-
-
-  <!-- НАВЕРХ -->
-
-  <button
-    class="back-to-top"
-    id="backToTop"
-    type="button"
-    aria-label="Вернуться наверх"
-    title="Наверх"
-  >
-
-    <svg
-      aria-hidden="true"
-      viewBox="0 0 24 24"
-    >
-      <path d="m6 14 6-6 6 6"/>
-    </svg>
-
-  </button>
-
-
-  <!-- LIGHTBOX -->
-
-  <div
-    class="lightbox"
-    id="lightbox"
-    role="dialog"
-    aria-modal="true"
-    aria-label="Просмотр фотографии"
-    aria-hidden="true"
-  >
-
-    <div
-      class="lightbox__backdrop"
-      data-close-lightbox
-    ></div>
-
-    <button
-      class="lightbox__close"
-      type="button"
-      aria-label="Закрыть галерею"
-      data-close-lightbox
-    >
-      ×
-    </button>
-
-    <button
-      class="lightbox__arrow lightbox__arrow--prev"
-      id="lightboxPrev"
-      type="button"
-      aria-label="Предыдущая фотография"
-    >
-      <svg aria-hidden="true" viewBox="0 0 24 24">
-        <path d="m15 18-6-6 6-6"/>
-      </svg>
-    </button>
-
-    <figure class="lightbox__figure">
-
-      <img
-        id="lightboxImage"
-        src=""
-        alt=""
-      >
-
-      <figcaption id="lightboxCaption"></figcaption>
-
-    </figure>
-
-    <button
-      class="lightbox__arrow lightbox__arrow--next"
-      id="lightboxNext"
-      type="button"
-      aria-label="Следующая фотография"
-    >
-      <svg aria-hidden="true" viewBox="0 0 24 24">
-        <path d="m9 18 6-6-6-6"/>
-      </svg>
-    </button>
+    </div>
 
   </div>
 
+</section>
+
+
+
+<!-- =========================================
+     ГАЛЕРЕЯ
+========================================= -->
+
+<section
+  class="section gallery-section reveal"
+  id="gallery"
+>
 
   <div
-    class="toast"
-    id="toast"
-    role="status"
-    aria-live="polite"
-    aria-atomic="true"
+    class="container"
+  >
+
+    <div
+      class="section-heading"
+    >
+
+      <p
+        class="eyebrow"
+      >
+        Наша история
+      </p>
+
+
+      <h2
+        class="section-title"
+      >
+        Счастливые моменты
+      </h2>
+
+
+      <p
+        class="section-subtitle"
+      >
+        Каждый день рядом —
+        ещё одна глава нашей общей истории.
+      </p>
+
+    </div>
+
+
+
+    <div
+      class="gallery"
+      id="galleryGrid"
+    >
+
+
+      <button
+        class="gallery__item gallery__item--tall"
+        type="button"
+      >
+
+        <img
+          src="images/couple-1.webp"
+          alt="Донёр и Рухшона"
+          loading="lazy"
+          decoding="async"
+          width="1200"
+          height="1600"
+        >
+
+      </button>
+
+
+
+      <button
+        class="gallery__item"
+        type="button"
+      >
+
+        <img
+          src="images/couple-2.webp"
+          alt="Романтичный момент"
+          loading="lazy"
+          decoding="async"
+          width="1200"
+          height="800"
+        >
+
+      </button>
+
+
+
+      <button
+        class="gallery__item gallery__item--wide"
+        type="button"
+      >
+
+        <img
+          src="images/couple-3.webp"
+          alt="Прогулка на закате"
+          loading="lazy"
+          decoding="async"
+          width="1200"
+          height="800"
+        >
+
+      </button>
+
+
+
+      <button
+        class="gallery__item"
+        type="button"
+      >
+
+        <img
+          src="images/couple-4.webp"
+          alt="Счастливый момент"
+          loading="lazy"
+          decoding="async"
+          width="1200"
+          height="800"
+        >
+
+      </button>
+
+
+
+      <button
+        class="gallery__item gallery__item--tall"
+        type="button"
+      >
+
+        <img
+          src="images/couple-5.webp"
+          alt="Донёр и Рухшона"
+          loading="lazy"
+          decoding="async"
+          width="1200"
+          height="1600"
+        >
+
+      </button>
+
+
+
+      <button
+        class="gallery__item"
+        type="button"
+      >
+
+        <img
+          src="images/couple-6.webp"
+          alt="Момент вместе"
+          loading="lazy"
+          decoding="async"
+          width="1200"
+          height="800"
+        >
+
+      </button>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+
+<!-- =========================================
+     ФИНАЛ
+========================================= -->
+
+<section
+  class="finale reveal"
+>
+
+  <div
+    class="finale__overlay"
   ></div>
 
 
-  <script src="script.js"></script>
+  <div
+    class="container finale__content"
+  >
+
+    <div
+      class="monogram"
+    >
+
+      <span>
+        Д
+      </span>
+
+      <i>
+        &
+      </i>
+
+      <span>
+        Р
+      </span>
+
+    </div>
+
+
+    <p
+      class="eyebrow"
+    >
+      До скорой встречи
+    </p>
+
+
+    <h2>
+      Мы с нетерпением ждём встречи с вами!
+    </h2>
+
+
+    <p
+      class="finale__names"
+    >
+      Донёр & Рухшона
+    </p>
+
+
+    <time
+      datetime="2026-08-31T18:00:00+05:00"
+    >
+      31 августа 2026 · 18:00
+    </time>
+
+
+    <p
+      class="finale__venue"
+    >
+      Ресторан «Муроду Максад»
+    </p>
+
+  </div>
+
+</section>
+
+
+</main>
+
+
+
+<footer
+  class="footer"
+>
+
+  <p>
+    Создано с любовью
+    <span>♥</span>
+  </p>
+
+</footer>
+
+
+
+<!-- =========================================
+     МУЗЫКА
+========================================= -->
+
+<button
+  class="music-button"
+  id="musicButton"
+  type="button"
+  aria-label="Включить музыку"
+>
+
+  <svg
+    class="music-button__play"
+    viewBox="0 0 24 24"
+  >
+
+    <path
+      d="M9 18V5l10-2v13"
+    />
+
+    <circle
+      cx="6"
+      cy="18"
+      r="3"
+    />
+
+    <circle
+      cx="16"
+      cy="16"
+      r="3"
+    />
+
+  </svg>
+
+
+  <span
+    class="music-button__waves"
+  >
+
+    <i></i>
+    <i></i>
+    <i></i>
+
+  </span>
+
+</button>
+
+
+<!-- ВАЖНО:
+     preload="none"
+     музыка не загружается сразу
+-->
+
+<audio
+  id="backgroundMusic"
+  src="music/wedding-music.mp3"
+  preload="none"
+  loop
+  playsinline
+></audio>
+
+
+
+<!-- =========================================
+     КНОПКА НАВЕРХ
+========================================= -->
+
+<button
+  class="back-to-top"
+  id="backToTop"
+  type="button"
+  aria-label="Наверх"
+>
+
+  <svg
+    viewBox="0 0 24 24"
+  >
+    <path
+      d="m6 14 6-6 6 6"
+    />
+  </svg>
+
+</button>
+
+
+
+<!-- =========================================
+     LIGHTBOX
+========================================= -->
+
+<div
+  class="lightbox"
+  id="lightbox"
+  aria-hidden="true"
+>
+
+  <div
+    class="lightbox__backdrop"
+    data-close-lightbox
+  ></div>
+
+
+  <button
+    class="lightbox__close"
+    type="button"
+    data-close-lightbox
+  >
+    ×
+  </button>
+
+
+  <button
+    class="lightbox__arrow lightbox__arrow--prev"
+    id="lightboxPrev"
+    type="button"
+  >
+
+    <svg
+      viewBox="0 0 24 24"
+    >
+      <path
+        d="m15 18-6-6 6-6"
+      />
+    </svg>
+
+  </button>
+
+
+  <figure
+    class="lightbox__figure"
+  >
+
+    <img
+      id="lightboxImage"
+      src=""
+      alt=""
+    >
+
+    <figcaption
+      id="lightboxCaption"
+    ></figcaption>
+
+  </figure>
+
+
+  <button
+    class="lightbox__arrow lightbox__arrow--next"
+    id="lightboxNext"
+    type="button"
+  >
+
+    <svg
+      viewBox="0 0 24 24"
+    >
+      <path
+        d="m9 18 6-6-6-6"
+      />
+    </svg>
+
+  </button>
+
+</div>
+
+
+
+<div
+  class="toast"
+  id="toast"
+></div>
+
+
+<!-- defer = не мешает загрузке страницы -->
+
+<script
+  src="script.js"
+  defer
+></script>
+
 
 </body>
 </html>
