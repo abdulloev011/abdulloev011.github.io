@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#F8F6F2">
+  <title>Мамаджон & Мехрона — приглашение на свадьбу</title>
+  <meta name="description" content="Джураев Мамаджон и Шарипова Мехрона приглашают на свадьбу 25 сентября 2026 в 18:00. г. Канибадам, ресторан «Точи Заррин».">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="ru_RU">
+  <meta property="og:title" content="Мамаджон & Мехрона — наша свадьба">
+  <meta property="og:description" content="25 сентября 2026, 18:00. г. Канибадам, ресторан «Точи Заррин».">
+  <!-- После публикации добавьте og:url и абсолютный URL вашей фотографии в og:image. -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%23F8F6F2'/%3E%3Ctext x='32' y='46' text-anchor='middle' font-size='46' font-family='serif'%3E%26%3C/text%3E%3C/svg%3E">
+  <link rel="stylesheet" href="style.css">
+  <script defer src="script.js"></script>
+</head>
+<body>
+  <audio id="wedding-music" src="audio/alex-warren-ordinary.mp3" preload="none" loop></audio>
+  <button class="music-toggle" id="music-toggle" type="button" aria-label="Включить музыку" aria-pressed="false" title="Alex Warren — Ordinary" hidden>
+    <span aria-hidden="true" id="music-icon">♪</span>
+    <span id="music-label">Включить музыку</span>
+  </button>
+  <div class="invitation" id="invitation" hidden>
+    <p class="eyebrow">A LETTER FOR YOU</p>
+    <h1>Вам пришло<br><em>приглашение</em></h1>
+    <button class="envelope" id="open-invitation" aria-label="Открыть свадебное приглашение">
+      <!-- ЗАМЕНИТЬ НА ФОТО -->
+      <img class="paper-texture" src="images/envelope.webp" alt="" width="800" height="600" loading="lazy">
+      <span class="envelope-card"><span class="eyebrow">WE ARE GETTING MARRIED</span><span class="card-monogram" data-bind="initials">М & М</span><span data-bind="shortDate">25.09.2026</span></span>
+      <span class="envelope-pocket"></span><span class="envelope-flap"></span>
+      <span class="seal" aria-hidden="true">&</span>
+    </button>
+    <p class="invitation-hint">Нажмите на конверт,<br>чтобы открыть приглашение</p>
+    <span class="eyebrow invitation-bottom">WITH LOVE · <span data-bind="year">2026</span></span>
+  </div>
+
+  <div id="site">
+    <header class="hero" id="home">
+      <!-- ЗАМЕНИТЬ НА ФОТО -->
+      <img class="hero-photo" src="images/hero.webp" alt="Жених и невеста в день свадьбы" width="1400" height="1800" fetchpriority="high">
+      <div class="hero-top"><span class="eyebrow">THE WEDDING DAY</span><span class="eyebrow" data-bind="shortDate">25.09.2026</span></div>
+      <div class="hero-title"><p class="eyebrow">МЫ ВЫБИРАЕМ ДРУГ ДРУГА</p><h2 tabindex="-1" id="couple-title"><span data-bind="groom">Мамаджон</span><em>&</em><span data-bind="bride">Мехрона</span></h2></div>
+      <a class="hero-bottom" href="#welcome"><span class="eyebrow">SAVE THE DATE</span><span class="hero-date" data-bind="longDate">25 сентября 2026</span><span aria-hidden="true">↓</span></a>
+    </header>
+    <main>
+      <section class="welcome section container" id="welcome">
+        <div class="reveal welcome-copy"><p class="eyebrow">НАША НОВАЯ ГЛАВА</p><h2>Дорогие <em>гости!</em></h2><p>Совсем скоро состоится один из самых важных дней в нашей жизни.</p><p>Мы будем счастливы разделить этот особенный момент вместе с вами.</p><p><em>С нетерпением ждём вас!</em></p><p class="couple-full-names"><span data-bind="groomFull">Джураев Мамаджон</span><br>&amp;<br><span data-bind="brideFull">Шарипова Мехрона</span></p></div>
+      </section>
+
+      <section class="date-section section reveal" aria-labelledby="date-title"><p class="eyebrow">ОБВЕДИТЕ ЭТУ ДАТУ</p><h2 id="date-title">Save <em>the date</em></h2><p class="month" id="calendar-month">Сентябрь 2026</p><div class="calendar" id="calendar" aria-label="Дата свадьбы"></div><p class="date-caption">День, когда начнётся наше «навсегда».</p><p class="eyebrow">НАЧАЛО В <span data-bind="startTime">18:00</span></p></section>
+      <div class="marquee" aria-hidden="true"><div>SAVE THE DATE · SAVE THE DATE · SAVE THE DATE · SAVE THE DATE · SAVE THE DATE · SAVE THE DATE ·&nbsp;</div></div>
+
+      <section class="location" id="location" aria-labelledby="location-title">
+        <div class="location-card reveal">
+          <p class="eyebrow">МЕСТО НАШЕЙ ВСТРЕЧИ</p><h2 id="location-title">Локация</h2><h3><span class="venue-label">Ресторан</span><span class="venue-name" data-bind="venueName">«Точи Заррин»</span></h3><p data-bind="address">г. Канибадам</p></div></section>
+
+
+      
+
+    
+
+
+      <section class="countdown section reveal" aria-labelledby="countdown-title"><p class="eyebrow" id="countdown-title">ЖДЁМ ВАС ЧЕРЕЗ…</p><div class="countdown-grid" id="countdown"><div><span id="days">00</span><small>дней</small></div><div><span id="hours">00</span><small>часов</small></div><div><span id="minutes">00</span><small>минут</small></div><div><span id="seconds">00</span><small>секунд</small></div></div><p id="wedding-today" hidden>Сегодня наш особенный день 🤍</p></section>
+    </main>
+    <footer class="footer section"><h2 class="reveal">До <em>встречи!</em></h2><p class="footer-names"><span data-bind="groom">Мамаджон</span> & <span data-bind="bride">Мехрона</span></p><p class="eyebrow" data-bind="shortDate">25.09.2026</p><p class="with-love eyebrow">WITH LOVE</p></footer>
+  </div>
+  <noscript><p class="noscript-note">Для открытия конверта, таймера и анкеты включите JavaScript. Информация о свадьбе доступна ниже.</p></noscript>
+</body>
+</html>
